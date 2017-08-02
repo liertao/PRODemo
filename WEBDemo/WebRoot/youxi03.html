@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<title></title>
+<style type="text/css">
+	.box1{
+		width:40px;
+		height:40px;
+		border-radius:20px;
+		background-color:green;
+		
+	}
+	.box2{
+		width:40px;
+		height:40px;
+		border-radius:20px;
+		background-color:red;
+		
+	}
+	.box3{
+		width:10px;
+		height:10px;
+		border-radius:5px;
+		background-color:black;
+		
+	}
+</style>
+</head>
+<body>
+<div id="frame" style="margin-top:30px;margin-left:200px;width:900px;height:600px;box-shadow:5px 5px 20px #424242;background-image:url(images/xzbj01.jpg);">
+	<div id="box1" class="box1" style="position:absolute;top:300px;left:550px;"></div>
+	<div id="box2" class="box2" style="position:absolute;top:300px;left:750px;"></div>	
+	<div id="zhongxin" class="box3" style="position:absolute;top:315px;left:660px;">></div>
+</div>	
+</body>
+<script type="text/javascript">
+	//var timerleft;
+	//var timerright;
+	window.onkeydown = function(e){
+		e = window.event||e;
+		switch(e.keyCode){
+		case 37:
+		//timerleft = window.setInterval(greenleftfun, 10);
+		//window.clearInterval(timerright);
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		greenleftfun();
+		break;
+		case 39:
+		//timerright = window.setInterval(redleftfun, 10);
+		//window.clearInterval(timerleft);
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		redleftfun();
+		break;
+		}
+	}
+	
+	var r = 100;
+	var x = 670;
+	var y = 320;
+	var numgl = 180;
+	var numrl = 0;
+	var greenleftfun = function(){
+		//计算圆周上的没一点的x，y
+		numgl--;
+		numrl--;
+		var agl = Math.sin(numgl*Math.PI/180)*r;
+		var bgl = Math.cos(numgl*Math.PI/180)*r;
+		
+		var arl = Math.sin(numrl*Math.PI/180)*r;
+		var brl = Math.cos(numrl*Math.PI/180)*r;
+		
+		//算出圆周上每一点的坐标
+		document.getElementById("box1").style.left=x+bgl-20+"px";
+		document.getElementById("box1").style.top=y+agl-20+"px";
+		document.getElementById("box2").style.left=x+brl-20+"px";
+		document.getElementById("box2").style.top=y+arl-20+"px";
+	}
+	
+	var redleftfun = function(){
+		//计算圆周上的没一点的x，y
+		numgl++;
+		numrl++;
+		var agl = Math.sin(numgl*Math.PI/180)*r;
+		var bgl = Math.cos(numgl*Math.PI/180)*r;
+		
+		var arl = Math.sin(numrl*Math.PI/180)*r;
+		var brl = Math.cos(numrl*Math.PI/180)*r;
+		
+		//算出圆周上每一点的坐标
+		document.getElementById("box1").style.left=x+bgl-20+"px";
+		document.getElementById("box1").style.top=y+agl-20+"px";
+		document.getElementById("box2").style.left=x+brl-20+"px";
+		document.getElementById("box2").style.top=y+arl-20+"px";
+	}		
+	
+	
+	
+	
+	
+	
+</script>
+</html>

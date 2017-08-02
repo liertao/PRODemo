@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>js练习4</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<link href="css/myStyle.css" type="text/css" rel="Stylesheet"/>
+<style type="text/css">
+	h1.style1{
+		border-top:1px solid black;
+		background-color:silver;
+		font-weight:normal;
+	}
+</style>
+<script type="text/javascript" src="js/js_demo4.js">
+
+</script>
+</head>
+<body>
+<form>
+	<input id="txt1" type="text"/>
+	<h1 id="h1">h1 text</h1>
+	<h2>2.性别选择</h2>
+	<input type="radio" name="sex" value="01"/>male
+	<input type="radio" name="sex" value="01"/>famale
+	<h2>3.表单的验证和提交</h2>
+	管理员账号：<input type="text" class="txt" id="txtAccount" onfocus="this.className='txt_focus';" onblur="valiAccount();"/><span id="accountInfo">10以内的字母和数字的组合</span></br>
+	电话号码：<input type="text" class="txt" id="txtPhone" onfocus="this.className='txt_focus';" onblur="valiPhone();"/><span id="phoneInfo">形如：010-123445678</span><br>
+	<input type="submit" value="保存" onclick="valiData();"/>
+
+</form>
+</body>
+</html>

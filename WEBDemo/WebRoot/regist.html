@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>注册校验用户名</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<script type="text/javascript" src="js/my.js"></script>
+<script type="text/javascript">
+	function check_name(){
+		var xhr = getXhr();
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				document.getElementById("name_msg").innerHTML = xhr.responseText;
+			}
+		}
+		xhr.open("post", "check_name.do",true);
+		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+		document.getElementById("name_msg").innerHTML="正在检查.....";
+		var uname = document.getElementById("uname");
+		xhr.send("uname="+uname.value);
+	}
+</script>
+</head>
+<body>
+<!-- 注册校验用户名是否可用 -->
+<form action="" method="post">
+	<fieldset>
+		<legend>注册信息</legend>
+		用户名：<input name="uname" id="uname" onblur="check_name();"/>
+		<input type="button" value="检查一下吧" onclick="check_name();"/>
+		<span id="name_msg" style="color:red;"></span>
+		<br><br>
+		<input type="submit" value="注册"/>
+	</fieldset>
+</form>
+</body>
+</html>

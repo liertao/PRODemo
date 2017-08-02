@@ -1,0 +1,8 @@
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ResolveAssemblyReference.cache
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ScannerDemo.Properties.Resources.resources
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ScannerDemo.ScannerDemo.resources
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ScannerDemo.csproj.GenerateResource.Cache
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\bin\Debug\ScannerDemo.exe
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\bin\Debug\ScannerDemo.pdb
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ScannerDemo.exe
+D:\DeskTop\MyDocuments\Visual Studio 2005\Projects\WindowsApplication1\ScannerDemo\obj\Debug\ScannerDemo.pdb

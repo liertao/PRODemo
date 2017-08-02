@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>jsDay02测试</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<script type="text/javascript" src="js/js_demo2.js"></script>
+</head>
+<body>
+	<form>
+		<h2>1.输入验证</h2>
+		用户名(3到6位字母数字组成)：<input type="text" id="txtName" onblur="validateUserName();"/></br></br>
+		电话号码(6位数字):<input type="text" id="txtNumber" onblur="validateNumber();"/></br>
+		<h2>2.Date对象：订单时段的查询</h2>
+		<input id="chkThree" name="date" type="radio" onclick="getRangeDays(3);"/>
+		<label for="chkThree">三天内</label>
+		<input id="chkWeek" name="date" type="radio" onclick="getRangeDays(7);"/>
+		<label for="chkWeek">一周内</label>
+		<h2>3.argument：方法重载</h2>
+		<input type="button" value="计算平方" onclick="myMethod(12);"/>
+		<input type="button" value="计算加法" onclick="myMethod(12,45)"/>
+		<h2>4.Function对象和匿名函数</h2>
+		<p>默认数组为：[34,24,14,56,43];</p>
+		<input type="button" value="排序" onclick="sortArray();"/>
+		<h2>5.简单计算器功能</h2>
+		<input type="button" value="1" onclick="simpleCal(this.value);"/>
+		<input type="button" value="2" onclick="simpleCal(this.value);"/>
+		<input type="button" value="3" onclick="simpleCal(this.value);"/>
+		<input type="button" value="4" onclick="simpleCal(this.value);"/>
+		<input type="button" value="5" onclick="simpleCal(this.value);"/>
+		<input type="button" value="+" onclick="simpleCal(this.value);"/>
+		<input type="button" value="-" onclick="simpleCal(this.value);"/>
+		<input type="button" value="=" onclick="simpleCal(this.value);"/></br>
+		<input type="text" id="txtData" />
+		<h2>6.对话框：删除动作的提交和取消</h2>
+		<input type="submit" value="删除" onclick="return Fucdelete();"/>
+		
+		
+	</form>
+</body>
+</html>

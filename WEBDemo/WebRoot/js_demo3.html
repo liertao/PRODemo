@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>js演示3</title>
+	<script type="text/javascript" src="js/js_demo3.js"></script>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+</head>
+<body onload="startRotate();">
+	<form>
+		<h2>1.演示动态时钟</h2>
+		<input type="button" value="显示时钟" onclick="showTime();"/>
+		<input type="button" value="启动时钟" onclick="startClock();"/>
+		<input type="button" value="停止时钟" onclick="stopClock();"/>
+		</br></br>
+		<span id=spantime></span>
+		<h2>2.页面定时跳转</h2>
+		<input type="button" value="5s后打开新页面" onclick="openWindowWait();"/>
+		如果想取消，请点击<a href="javascript:cancleOpen();">这里</a>
+		<h2>3.广告轮播效果</h2>
+		<img id="img1" style="width:100px;height:100px;" src="images/0101.jpg" 
+		onmouseover="stopRotate();" onmouseout="startRotate();"/>
+		
+		
+	</form>
+</body>
+</html>

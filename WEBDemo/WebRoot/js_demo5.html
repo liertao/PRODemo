@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>购物车</title>
+<style type="text/css">
+	input.txt
+	{
+		width:50px;
+	}
+
+</style>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<script type="text/javascript" src="js/js_demo5.js"></script>
+</head>
+<body>
+<form>
+	<h2>1.购物车</h2>
+	<table border="1" style="width:600px;">
+		<tr><td>商品名称</td><td>价格</td><td>数量</td><td>小计</td></tr>
+		<tr><td>book1</td><td>10.00</td><td>
+			<input type="button" value="-" onclick="decrease(this);"/>
+			<input type="text" id="book1Num" class="txt" value="0"/>
+			<input type="button" value="+" onclick="increase(this);"/>
+			</td><td id="book1xiaoji">0.00</td></tr>
+		<tr><td>book2</td><td>5.00</td><td>
+			<input type="button" value="-" onclick="decrease(this);"/>
+			<input type="text" id="book2Num" class="txt" value="0"/>
+			<input type="button" value="+" onclick="increase(this);"/>
+			</td><td id="book2xiaoji">0.00</td></tr>
+		<tr><td>book3</td><td>15.00</td><td>
+			<input type="button" value="-" onclick="decrease(this);"/>
+			<input type="text" id="book3Num" class="txt" value="0"/>
+			<input type="button" value="+" onclick="increase(this);"/>
+			</td><td id="book3xiaoji">0.00</td></tr>
+		<tr><td colspan="3">总计：</td><td id="zongji">0.00</td></tr>
+	</table>
+	<h2>2.动态添加页面元素</h2>
+	<div id="div1">
+	<input type="button" id="add" value="动态添加新元素" onclick="addyuansu();"/>
+	</div>
+	<h2>3.联动菜单</h2>
+	方向：<select id="selClass" onchange="classChangedByHTMLDOM();">
+			<option>请选择</option>
+			<option>JSD</option>
+			<option>UID</option>
+			<option>PHP</option>
+	</select>
+	课程：<select id="selProject">
+		<option>请选择</option>
+	</select>
+	<h2>4.CheckBox</h2>
+	<input type="checkbox" value=""/>dsfsffd
+	
+	
+</form>
+</body>
+</html>

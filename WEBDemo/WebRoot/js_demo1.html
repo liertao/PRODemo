@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>JavaScript day01</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript">
+	function firstMethod(){
+		alert("Hello World in script block.");
+	}
+</script>
+<script src="js/js_demo1.js" type="text/javascript"></script>
+</head>
+<body>
+<form>
+	<h2>1.Hello World</h2>
+	<input type="button" value="first button" onclick="alert('Hello World');"/>
+	<input type="button" value="second button" onclick="firstMethod();" />
+	<input type="button" value="third button" onclick="secondMethod();"/>
+	
+	<h2>2.判断数据类型，并计算平方</h2>
+	<input type="text" id="txtData"/>
+	<input type="button" value="计算平方" onclick="getSquare();"/>
+	
+	<h2>3.猜数字游戏</h2>
+	<p><b>请输入一个数字（1到20之间）</b></p>
+	<input type="text" id="txtNumber" onblur="guessNumber();"/>
+	<h2>4.控制语句：求阶乘</h2>
+	<input type="button" value="求10的阶乘" onclick="getJc10();"/>
+	<h2>5.String对象，字符串的查询和过滤</h2>
+	<input type="text" id="txtString"/></br></br>
+	<input type="button" value="过滤js字符串" onclick="changeString();"/>
+	<input type="button" value="查询字符串并过滤（采用正则表达式" onclick="changeStReg();"/>
+	<h2>6.Array对象：倒转，文本与数值的排序</h2>
+	<input type="text" id="txtNumbers"/>&nbsp;<input type="button" value="数组倒转" onclick="operateArray(1);"/></br></br>
+	<input type="button" value="数组排序（文本）" onclick="operateArray(2);"/>&nbsp;<input type="button" value="数值排序" onclick="operateArray(3);"/>
+	<h2>7.随机数生成器</h2>
+	最大值：<input type="text" id="max"/></br>
+	最小值：<input type="text" id="min"/></br>
+	<input type="button" value="生成随机数" onclick="getRandomNumber();"/>
+	<h2>8.Number对象：计算资产的折旧</h2>
+	录入资产采购时的价值：<input type="text" id="jiazhi"/></br>
+	录入折旧率：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="zhejiu"/></br>
+	录入计算年限：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="nianxian"/></br>
+	<input type="button" value="计算" onclick="zhejiuzj();"/></br>
+	<div id="jieguo" style="border:1px solid black;width:500px;height:200px;"></div>
+</form>
+</body>
+</html>
