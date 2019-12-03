@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>项目管理系统</title>
+<style type="text/css">
+	.loginform {
+		/*border: 1px solid red;*/
+		width:40%;
+		margin-left:40%;
+		margin-top:15%;
+	}
+	.user {
+		margin-top:10px;
+	}
+</style>
+</head>
+<body style="background-image: url(itemimages/login.jpg); background-size:100%;">
+	<div class="loginform">
+		用户：<input class="user" type="text" id="logId" name="logId">
+		<br>
+		密码：<input class="user" type="password" id="pwd" name="pwd"><div class="user"></div>
+		<input type="button" value="登录" onclick="login();">
+	</div>
+	
+</body>
+<script type="text/javascript">
+	//登录方法
+	function login(){
+		//获取登录用户名和密码
+		var logId = document.getElementById("logId"),
+			pwd = document.getElementById("pwd");
+		var data = {logId:logId.value,pwd:pwd.value};
+		MAjax('POST', 'login', data, function(data){
+			var obj = eval("("+ data +")");
+			debugger;
+			if(obj.success){
+				//跳转到数据展示层
+				window.location.href='devitems1.html';
+			}else{alert(obj.msg);}
+		}, function(error){alert(error)});
+		
+	}
+	//请求行数
+	function MAjax(type, url, data, success, failed){
+		var xhr = null;
+		if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();
+		}else{
+			xhr = new ActiveObject('Microsoft.XMLHTTP');
+		}
+		
+		var random = Math.random();
+		if(typeof data == 'object'){
+			var str = '';
+			for(var key in data){
+				str += key + '=' +data[key] + '&';
+			}
+			data = str.replace(/&$/, '');
+		}
+		
+		if(type.toUpperCase()=='GET'){
+			if(data){
+				xhr.open('GET', url + '?' +data, true);
+			}else{
+				xhr.open('GET', url + '?t='+random, true);
+			}
+			xhr.send();
+		}else if(type.toUpperCase()=='POST'){
+			xhr.open('POST', url, true);
+			//如果要向html表单那样post请求，需要添加消息头
+			xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+			xhr.send(data);
+		}
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					success(xhr.responseText);
+				}else{
+					if(failed){
+						failed(xhr.status)
+					}
+				}
+			}
+		}
+	}
+</script>
+</html>

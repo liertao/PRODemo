@@ -1,0 +1,222 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开发项管理系统</title>
+    <link rel="stylesheet" type="text/css" href="itemscss/items.css">
+</head>
+<script type="text/javascript" src="js/items/itemsFN.js"></script>
+<body style="background-image: url(itemimages/items1.jpg); background-size:100%;">
+    <div style="margin:10px;">
+        <!-- 第一部分 -->
+        <div class="firstBox">
+            <h5>开发项明细：</h5>
+            <button id="button">新增</button>
+            <button id="modify">修改</button>
+            <button id="del">删除</button>
+            <table id="ttab">
+                <thead>
+                    <tr>
+                    	<th style=text-align:center;width:5%;>序号</th>
+                    	<th style="display:none;">ID主键</th>
+                        <th style=text-align:center;width:20%;>开发项名称</th>
+                        <th style=text-align:center;width:20%;>开发项描述</th>
+                        <th style=text-align:center;width:20%;>开发责任人</th>
+                    </tr>
+                </thead>
+                <tbody id="tby">
+                </tbody>
+            </table>
+        </div>
+        <!-- 第二部分 -->
+        <div id="twoBox" onmousedown="mouseDown(this,event)" onmousemove="mouseMove(event)" onmouseup="mouseUp(event)">
+            <div class="twoBox_lever">
+                <div class="twoBox_lever_two">
+                    <div class="two_title">
+                        <p>新增开发项</p>
+                    </div>
+                    <form>
+                        <label style="float:left">开发项名称：
+                            <input type="text" id="add_item" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发项描述：
+                            <input type="text" id="add_itemcomm" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发责任人：
+                            <input type="text" id="add_itemdev" placeholder="请输入内容">
+                        </label>
+                    </form>
+                    <div class="two_footer">
+                        <!-- <button>保存</button> -->
+                        <button id="addok">保存</button>
+                        <button id="addcancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第三部分 -->
+        <div id="thrBox" onmousedown="mouseDownM(this,event)" onmousemove="mouseMoveM(event)" onmouseup="mouseUpM(event)">
+            <div class="thrBox_lever">
+                <div class="thrBox_lever_two">
+                    <div class="thr_title">
+                        <p>开发项修改</p>
+                    </div>
+                    <form>
+                        <label style="float:left">ID：
+                            <input type="text" disabled="disabled" id="mod_itemid" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发项名称：
+                            <input type="text" id="mod_item" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发项描述：
+                            <input type="text" id="mod_itemcomm"placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发责任人：
+                            <input type="text" id="mod_itemdev" placeholder="请输入内容">
+                        </label>
+                    </form>
+                    <div class="thr_footer">
+                        <!-- <button>保存</button> -->
+                        <button id="modok">保存</button>
+                        <button id="modcancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="items/itemsFN.js"></script>
+<script type="text/javascript" src="items/toolFN.js"></script>
+<script>
+    window.onload = function () {
+        document.getElementById("button").onclick = function () {
+            document.getElementById("twoBox").classList.add("show");
+        }
+        document.getElementById("addcancel").onclick = function () {
+            document.getElementById("twoBox").classList.remove("show");
+        }
+        //弹出修改之前，需要进行查询
+        document.getElementById("modify").onclick = function () {
+        	var tbl = document.getElementById("ttab");
+        	var con = false, count = 0, index=0;
+	    	for(var i=0;i<tbl.rows.length; i++){
+	    		if(tbl.rows[i].classList.contains("checked")){
+	    			con = true;
+	    			count++;
+	    			index = i;
+	    		}
+	    	}
+	    	if(!con){
+	    		alert('请选中要修改的数据');
+	    		return false;
+	    	}
+	    	if(count>1){
+	    		alert('请选中一条数据进行修改');
+	    		return false;
+	    	}
+	    	//填充数据
+	    	document.getElementById("mod_itemid").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[1].innerText;
+	    	document.getElementById("mod_item").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[2].innerText;
+	    	document.getElementById("mod_itemcomm").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[3].innerText;
+	    	document.getElementById("mod_itemdev").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[4].innerText;
+            document.getElementById("thrBox").classList.add("show");
+        }
+        document.getElementById("modcancel").onclick = function () {
+            document.getElementById("thrBox").classList.remove("show");
+        }
+        //新增保存
+        document.getElementById("addok").onclick = function () {
+        	//获取输入数据
+        	var item_name = document.getElementById("add_item").value;
+        	var item_comm = document.getElementById("add_itemcomm").value;
+        	var item_dev = document.getElementById("add_itemdev").value;
+        	if(item_name==null || item_name==""){
+        		alert("开发项名称不能为空");
+        		return false;
+        	}
+        	if(item_comm==null || item_comm==""){
+        		alert("开发项描述不能为空");
+        		return false;
+        	}
+        	if(item_dev==null || item_dev==""){
+        		alert("开发项负责人不能为空");
+        		return false;
+        	}
+        	var data = {item_name:item_name,item_comm:item_comm,item_dev:item_dev};
+			MAjax('POST', 'add', data, function(data){
+				var obj = eval("("+data+")");
+				if(obj.success){
+					//alert(obj.msg);
+					loadData();
+				}else{
+					alert(obj.msg);
+				};
+			}, function(error){alert(error)});
+            document.getElementById("twoBox").classList.remove("show");
+        }
+        //修改保存
+        document.getElementById("modok").onclick = function () {
+        	//获取输入数据
+        	var id = document.getElementById("mod_itemid").value;
+        	var item_name = document.getElementById("mod_item").value;
+        	var item_comm = document.getElementById("mod_itemcomm").value;
+        	var item_dev = document.getElementById("mod_itemdev").value;
+        	if(item_name==null || item_name==""){
+        		alert("开发项名称不能为空");
+        		return false;
+        	}
+        	if(item_comm==null || item_comm==""){
+        		alert("开发项描述不能为空");
+        		return false;
+        	}
+        	if(item_dev==null || item_dev==""){
+        		alert("开发项负责人不能为空");
+        		return false;
+        	}
+        	var data = {id:id,item_name:item_name,item_comm:item_comm,item_dev:item_dev};
+			MAjax('POST', 'add', data, function(data){
+				var obj = eval("("+data+")");
+				if(obj.success){
+					//alert(obj.msg);
+					loadData();
+				}else{
+					alert(obj.msg);
+				};
+			}, function(error){alert(error)});
+            document.getElementById("thrBox").classList.remove("show");
+        }
+        //删除数据
+        document.getElementById("del").onclick = function () {
+        	var tbl = document.getElementById("ttab");
+        	var con = false, index=0;
+        	var ids = "";
+	    	for(var i=0;i<tbl.rows.length; i++){
+	    		if(tbl.rows[i].classList.contains("checked")){
+	    			con = true;
+	    			index = i;
+	    			ids += document.getElementsByTagName("tr")[index].getElementsByTagName("td")[1].innerText+",";
+	    		}
+	    	}
+	    	if(!con){
+	    		alert('请选中要修改的数据');
+	    		return false;
+	    	}
+        	//获取输入数据
+        	var data = {ids:ids.substr(0,ids.length-1)};
+			MAjax('POST', 'delItem', data, function(data){
+				var obj = eval("("+data+")");
+				debugger;
+				if(obj.success){
+					loadData();
+				}else{
+					alert(obj.msg);
+				};
+			}, function(error){alert(error)});
+            document.getElementById("thrBox").classList.remove("show");
+        }
+    }
+    //加载数据
+    loadData();
+</script>
+</html>

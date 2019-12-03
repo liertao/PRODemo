@@ -1,0 +1,680 @@
+<html>
+<head>
+<title>游戏设计</title>
+<style type="text/css">
+	.xinxi p
+	{
+		font-size:20pt;
+	}
+	.xinxi span
+	{
+		font-size:30pt;
+	}
+	/*tr
+	{
+		border:1px solid red;
+	}
+	td
+	{
+		text-align: center;
+		border: 1px solid #ccc;
+	}*/
+</style>
+
+</head>
+<body>
+<form>
+<div>
+<div id="father" style="float:left;border:1px dotted black;width:600px;height:400px;">
+	
+	<div id="obj01" style="position:absolute;background-color:red;width:50px;height:50px;display:block;"></div>
+	<div id="obj02" style="position:absolute;top:380px;left:560px;background-color:blue;width:50px;height:30px;display:block;"></div>
+	<div id="obj03" style="position:absolute;top:349px;left:9px;background-color:green;width:40px;height:60px;display:none;"></div>
+	<div id="obj04" style="position:absolute;top:9;left:580px;background-color:black;width:30px;height:30px;display:none;"></div>
+	<input id="btn01" style="position:absolute;margin-left:250px;margin-top:180px;display:none;z-index:9999;" type="button" value="游戏重置" onclick="refresh();"/>
+	
+	<div class="goal" id="div1" style="position:absolute;top:200px;left:250px;background-color:yellow;width:80px;height:80px;display:block;" onmousedown="mouseDown(this,event)" onmousemove="mouseMove(event)" onmouseup="mouseUp(event)"></div>
+</div>
+<div class="xinxi" style="float:left;margin-left:20px;width:400px;height:400px;">
+	<!-- 消息通知区域 -->
+	<p style="padding-left:5px;">计时：<span id="timeinfo1">0</span>&nbsp;秒&nbsp;</span><span id="timeinfo2" onclick="showTime();">000</span></p>
+	<br>
+	<p style="padding-left:5px;">游戏级别选择：</p>
+	<input style="padding-left:15px;" type="radio" name="level" value="01" onclick="changeLevel(this.value);" checked="checked">简单（两个运动方块）<br>
+	<input style="padding-left:10px;" type="radio" name="level" value="02" onclick="changeLevel(this.value);">一般（三个运动方块）<br>
+	<input style="padding-left:10px;" type="radio" name="level" value="03" onclick="changeLevel(this.value);">困难（四个运动方块）<br>
+	<br>
+	速度选择：<select id="levelsudu" name="levelsudu" onchanged="sudu();" onchange="dochang(this);">
+				<option value="1">低速</option>
+				<option value="2" checked="checked">中速</option>
+				<option value="3">高速</option>
+	</select>
+	<br><br>
+	<br><br>游戏提示：鼠标拖动黄色方块，使不与其他方块碰撞
+</div>
+</br>
+<div style="float:left;width:100%;border:1px solid black;">
+	<div style="float:left;width:100%;height:auto;border-bottom: 1px solid black;padding-left:20px;padding-bottom:5px;">
+		查询条件<br>
+		级别选择：<select id="findlevel" name="findL">
+					<option value="1">简单</option>
+					<option value="2" checked="checked">一般</option>
+					<option value="3">困难</option>
+		</select>&nbsp;&nbsp;&nbsp;
+		速度选择：<select id="findvlevel" name="findV">
+					<option value="1">低速</option>
+					<option value="2" checked="checked">中速</option>
+					<option value="3">高速</option>
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="查询" onclick="loadData(2);">
+	</div>
+	<!--<div style="float:left;width:100%;">&nbsp;</div>-->
+	<div style="float:left;width:100%;">
+		<table>
+			<thead><tr style="border:1px solid red;background:#95a58e;"><td style="text-align:left;font-weight:bold;width:20%;">等级</td><td style="text-align:left;font-weight:bold;width:20%;">速度</td><td style="text-align:left;font-weight:bold;width:20%;">分数</td><td style="text-align:left;font-weight:bold;width:20%;">游戏时间</td></tr></thead>
+			<tbody id="tby">
+				
+			</tbody>
+		</table>
+	</div>
+	
+</div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+	//fk01移动代码
+	//刷新页面直接加载数据
+	loadData(1);
+	function showDiv(){
+		/*方块1*/
+		var fk011 = document.getElementById("obj01");
+		var bx = fk011.offsetLeft;
+		var by = fk011.offsetTop;
+		var isDown = false;
+		if(xflag==01){
+			bx+=speedx;
+		}else{
+			bx-=speedx;
+		}
+		if(yflag==03){
+			by+=speedy;
+		}else{
+			by-=speedy;
+		}
+		document.getElementById("obj01").style.left=bx+"px";
+		document.getElementById("obj01").style.top=by+"px";
+		//alert(document.getElementById("obj01").offsetLeft);
+		
+		//判断出界X
+		if(document.getElementById("obj01").offsetLeft>=510){
+			xflag=02;
+		}else if(document.getElementById("obj01").offsetLeft<=10){
+			xflag=01;
+		}
+		//判断出界Y
+		if(document.getElementById("obj01").offsetTop>=310){
+			yflag=04;
+		}else if(document.getElementById("obj01").offsetTop<=10){
+			yflag=03;
+		}
+		
+		/*方块2*/
+		var fk021 = document.getElementById("obj02");
+		bx = fk021.offsetLeft;
+		by = fk021.offsetTop;
+		//alert(bx);
+		if(xflag2==01){
+			bx+=speedx2;
+		}else{
+			bx-=speedx2;
+		}
+		if(yflag2==03){
+			by+=speedy2;
+		}else{
+			by-=speedy2;
+		}
+	
+		document.getElementById("obj02").style.left=bx+"px";
+		document.getElementById("obj02").style.top=by+"px";
+		//alert(document.getElementById("obj01").offsetLeft);
+		
+		//判断出界X
+		if(document.getElementById("obj02").offsetLeft>=560){
+			xflag2=02;
+		}else if(document.getElementById("obj02").offsetLeft<=10){
+			xflag2=01;
+		}
+		//判断出界Y
+		if(document.getElementById("obj02").offsetTop>=380){
+			yflag2=04;
+		}else if(document.getElementById("obj02").offsetTop<=10){
+			yflag2=03;
+		}
+		
+		/*方块3*/
+		var fk031 = document.getElementById("obj03");
+		bx = fk031.offsetLeft;
+		by = fk031.offsetTop;
+		//alert(bx);
+		if(xflag3==01){
+			bx+=speedx2;
+		}else{
+			bx-=speedx2;
+		}
+		if(yflag3==03){
+			by+=speedy2;
+		}else{
+			by-=speedy2;
+		}
+		document.getElementById("obj03").style.left=bx+"px";
+		document.getElementById("obj03").style.top=by+"px";
+		//alert(document.getElementById("obj01").offsetLeft);
+		
+		//判断出界X
+		if(document.getElementById("obj03").offsetLeft>=570){
+			xflag3=02;
+		}else if(document.getElementById("obj03").offsetLeft<=10){
+			xflag3=01;
+		}
+		//判断出界Y
+		if(document.getElementById("obj03").offsetTop>=350){
+			yflag3=04;
+		}else if(document.getElementById("obj03").offsetTop<=10){
+			yflag3=03;
+		}
+		
+		/*方块4*/
+		var fk041 = document.getElementById("obj04");
+		bx = fk041.offsetLeft;
+		by = fk041.offsetTop;
+		//alert(bx);
+		if(xflag4==01){
+			bx+=speedx;
+		}else{
+			bx-=speedx;
+		}
+		if(yflag4==03){
+			by+=speedy;
+		}else{
+			by-=speedy;
+		}
+		document.getElementById("obj04").style.left=bx+"px";
+		document.getElementById("obj04").style.top=by+"px";
+		//alert(document.getElementById("obj01").offsetLeft);
+		
+		//判断出界X
+		if(document.getElementById("obj04").offsetLeft>=580){
+			xflag4=02;
+		}else if(document.getElementById("obj04").offsetLeft<=10){
+			xflag4=01;
+		}
+		//判断出界Y
+		if(document.getElementById("obj04").offsetTop>=380){
+			yflag4=04;
+		}else if(document.getElementById("obj04").offsetTop<=10){
+			yflag4=03;
+		}
+		
+		//判断碰撞
+			var xmin = parseInt(obj01.style.left)-parseInt(div1.style.width);
+			var xmax = parseInt(obj01.style.left)+parseInt(obj01.style.width);
+			var ymin = parseInt(obj01.style.top)-parseInt(div1.style.height);
+			var ymax = parseInt(obj01.style.top)+parseInt(obj01.style.height);
+			var xmin2 = parseInt(obj02.style.left)-parseInt(div1.style.width);
+			var xmax2 = parseInt(obj02.style.left)+parseInt(obj02.style.width);
+			var ymin2 = parseInt(obj02.style.top)-parseInt(div1.style.height);
+			var ymax2 = parseInt(obj02.style.top)+parseInt(obj02.style.height);
+			var xmin3 = parseInt(obj03.style.left)-parseInt(div1.style.width);
+			var xmax3 = parseInt(obj03.style.left)+parseInt(obj03.style.width);
+			var ymin3 = parseInt(obj03.style.top)-parseInt(div1.style.height);
+			var ymax3 = parseInt(obj03.style.top)+parseInt(obj03.style.height);
+			var xmin4 = parseInt(obj04.style.left)-parseInt(div1.style.width);
+			var xmax4 = parseInt(obj04.style.left)+parseInt(obj04.style.width);
+			var ymin4 = parseInt(obj04.style.top)-parseInt(div1.style.height);
+			var ymax4 = parseInt(obj04.style.top)+parseInt(obj04.style.height);
+			var divx = parseInt(div1.style.left);
+			var divy = parseInt(div1.style.top);
+			//alert(xmin+" "+xmax+" "+ymin+" "+ymax+" "+divx+" "+divy);
+			
+			if(divx>=xmin && divx<=xmax && divy>=ymin && divy<=ymax){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin2 && divx<=xmax2 && divy>=ymin2 && divy<=ymax2){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin3 && divx<=xmax3 && divy>=ymin3 && divy<=ymax3){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin4 && divx<=xmax4 && divy>=ymin4 && divy<=ymax4){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}	
+	}
+	
+	//显示计时器函数（毫秒用）
+	function showTime(){
+		var jstime = new Date();
+		var strhaomiao = jstime.getMilliseconds();
+		document.getElementById("timeinfo2").innerHTML = strhaomiao;
+	}
+	//显示计时函数（秒用）
+	function showTime2(){
+		j+=1;
+		document.getElementById("timeinfo1").innerHTML = j;
+	}
+	
+	//action();//启动游戏
+	//var i=1;
+	var timer;
+	//显示时间计时的计时器（毫秒用）
+	var timerjs;
+	//显示时间计时的计时器（秒用）
+	var timerjs2;
+	var fk01 = document.getElementById("obj01");
+	var fk02 = document.getElementById("obj02");
+	var a = 0;
+	var xflag=01;
+	var yflag=03;
+	var speedx = 2;
+	var speedy = 1;
+	//计时秒的显示
+	var strmiao = 0;
+	
+	//2.方块2属性
+	var xflag2=01;
+	var yflag2=03;
+	var speedx2 = 2;
+	var speedy2 = 3;
+	
+	//3.方块3属性
+	var xflag3=01;
+	var yflag3=03;
+	
+	//4.方块4属性
+	var xflag4=01;
+	var yflag4=03;
+	
+	function action(){
+		i+=1;//每执行一次，+1；用于mouseDown中判定，防止启动函数重复
+		timerjs = window.setInterval(showTime, 1);
+		timerjs2 = window.setInterval(showTime2, 1000);
+		timer = window.setInterval(showDiv, b);
+	}
+	
+	//鼠标拖动
+	var mouseX,mouseY;
+	var objX,objY;
+	var isDown = false;//判断是否按下
+	var i=0;//判定是否为第一次点击
+	var j=0;//为显示时间的秒设置初始值
+	var b;//设定初始运动速度
+	var isrun = true;//用于判定游戏是否在运行状态
+	
+	//速度函数,用于初始化速度b的值
+	function sudu(){
+		debugger;
+		var i = document.getElementById("levelsudu").selectedIndex;
+		if(i==0){
+			b=8;
+		}else if(i==1){
+			b=6;
+		}else{
+			b=2;
+		}
+	}
+	function mouseDown(obj,e){
+		if(!isrun){
+			return false;
+		}
+		//点击时添加阴影效果
+		document.getElementById("div1").style.boxShadow="2px 2px 10px #464646";
+		//速度函数，用于获得初始速度b的值
+		sudu();
+		//obj.style.cursor="move";
+		objX = div1.style.left;
+		objY = div1.style.top;
+		//alert(objX);
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+		//alert(mouseX);
+		isDown = true;
+		//判断是否为是否启动过游戏
+		if(i==0 && isrun){
+			action();//启动游戏
+		}else{
+			return;
+		}
+		
+	}
+	
+	function mouseMove(e){
+		var div = document.getElementById("div1");
+		var x = e.clientX;
+		var y = e.clientY;
+		//alert(x);
+		if(isDown){
+			if(parseInt(div1.style.left)<=550 && parseInt(div1.style.left)>=0){
+				div.style.left = parseInt(objX)+parseInt(x)-parseInt(mouseX)+"px";
+			}else if(parseInt(div1.style.left)>550){
+				div.style.left = "550px";
+			}else{
+				div.style.left = "0";
+			}
+			if(parseInt(div1.style.top)<=350 && parseInt(div1.style.top)>=0){
+				div.style.top = parseInt(objY)+parseInt(y)-parseInt(mouseY)+"px";
+			}else if(parseInt(div1.style.top)>350){
+				div.style.top = "350px";
+			}else{
+				div.style.top = "0";
+			}
+			
+			//判断碰撞
+			var xmin = parseInt(obj01.style.left)-parseInt(div1.style.width);
+			var xmax = parseInt(obj01.style.left)+parseInt(obj01.style.width);
+			var ymin = parseInt(obj01.style.top)-parseInt(div1.style.height);
+			var ymax = parseInt(obj01.style.top)+parseInt(obj01.style.height);
+			var xmin2 = parseInt(obj02.style.left)-parseInt(div1.style.width);
+			var xmax2 = parseInt(obj02.style.left)+parseInt(obj02.style.width);
+			var ymin2 = parseInt(obj02.style.top)-parseInt(div1.style.height);
+			var ymax2 = parseInt(obj02.style.top)+parseInt(obj02.style.height);
+			var xmin3 = parseInt(obj03.style.left)-parseInt(div1.style.width);
+			var xmax3 = parseInt(obj03.style.left)+parseInt(obj03.style.width);
+			var ymin3 = parseInt(obj03.style.top)-parseInt(div1.style.height);
+			var ymax3 = parseInt(obj03.style.top)+parseInt(obj03.style.height);
+			var xmin4 = parseInt(obj04.style.left)-parseInt(div1.style.width);
+			var xmax4 = parseInt(obj04.style.left)+parseInt(obj04.style.width);
+			var ymin4 = parseInt(obj04.style.top)-parseInt(div1.style.height);
+			var ymax4 = parseInt(obj04.style.top)+parseInt(obj04.style.height);
+			var divx = parseInt(div1.style.left);
+			var divy = parseInt(div1.style.top);
+			//alert(xmin+" "+xmax+" "+ymin+" "+ymax+" "+divx+" "+divy);
+			
+			if(divx>=xmin && divx<=xmax && divy>=ymin && divy<=ymax){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin2 && divx<=xmax2 && divy>=ymin2 && divy<=ymax2){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin3 && divx<=xmax3 && divy>=ymin3 && divy<=ymax3){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+			if(divx>=xmin4 && divx<=xmax4 && divy>=ymin4 && divy<=ymax4){
+				window.clearInterval(timer);
+				window.clearInterval(timerjs);
+				window.clearInterval(timerjs2);
+				div1.style.cursor="default";
+				isDown = false;
+				isrun = false;
+				over();
+			}
+						
+		}
+	}
+	
+	function mouseUp(e){
+		document.getElementById("div1").style.boxShadow=null;
+		if(isDown){
+			var x = e.clientX;
+			var y = e.clientY;
+			var div = document.getElementById("div1");
+			div.style.left = parseInt(objX)+parseInt(x)-parseInt(mouseX)+"px";
+			div.style.top = parseInt(objY)+parseInt(y)-parseInt(mouseY)+"px";
+			mouseX = x;
+			mouseY = y;
+			div1.style.cursor="default";
+			isDown = false;
+			
+		}
+	}
+	
+	//游戏级别选择函数
+	function changeLevel(val){
+		//级别选择前线检验游戏是否重置，（检验红方块的厨师位置即可）
+		if(document.getElementById("obj01").offsetLeft!=9){
+			alert("请先重置游戏，再进行游戏级别选择");
+		}
+		if(val==01){//简单
+			//进行判断，如果没有重置，则终止程序
+			if(document.getElementById("obj01").offsetLeft!=9){
+				return;
+			}
+			document.getElementById("obj01").style.display="block";
+			document.getElementById("obj02").style.display="block";
+			document.getElementById("obj03").style.display="none";
+			document.getElementById("obj04").style.display="none";
+			document.getElementById("obj01").style.top=9;
+			document.getElementById("obj01").style.left=9;
+			document.getElementById("obj02").style.top=380;
+			document.getElementById("obj02").style.left=560;
+		}else if(val==02){//一般
+			//进行判断，如果没有重置，则终止程序
+			if(document.getElementById("obj01").offsetLeft!=9){
+				return;
+			}
+			document.getElementById("obj01").style.display="block";
+			document.getElementById("obj02").style.display="block";
+			document.getElementById("obj03").style.display="block";
+			document.getElementById("obj04").style.display="none";
+			document.getElementById("obj01").style.top=9;
+			document.getElementById("obj01").style.left=9;
+			document.getElementById("obj02").style.top=380;
+			document.getElementById("obj02").style.left=560;
+			document.getElementById("obj03").style.top=349;
+			document.getElementById("obj03").style.left=9;
+		}else{//困难
+			//进行判断，如果没有重置，则终止程序
+			if(document.getElementById("obj01").offsetLeft!=9){
+				return;
+			}
+			document.getElementById("obj01").style.display="block";
+			document.getElementById("obj02").style.display="block";
+			document.getElementById("obj03").style.display="block";
+			document.getElementById("obj04").style.display="block";
+			document.getElementById("obj01").style.top=9;
+			document.getElementById("obj01").style.left=9;
+			document.getElementById("obj02").style.top=380;
+			document.getElementById("obj02").style.left=560;
+			document.getElementById("obj03").style.top=349;
+			document.getElementById("obj03").style.left=9;
+			document.getElementById("obj04").style.top=9;
+			document.getElementById("obj04").style.left=580;
+		}
+		//直接加载数据
+		loadData(1);
+	}
+	//重置游戏  刷新页面
+	function refresh(){
+		history.go(0);
+	}
+	
+	//游戏结束绘制函数
+	function over(){
+		if(!isrun){
+			document.getElementById("father").style.background="#cdcece";
+			document.getElementById("btn01").style.display="block";
+			document.getElementById("btn01")
+			var data = {level:generateLevel(),vlevel:generateVLevel(),score:generateScore()};
+			//var data1 = {level:34,vlevel:20};//发送数据
+			isDown = false;
+			ajax('POST', 'save', data, function(data){
+				console.log(data);
+				//由于无法设置同步异步，因此在成功的回调还函数中发送查询数据的请求
+				loadData(1);
+			}, function(error){alert(error)});
+			//游戏结束直接显示排行榜
+		}
+		
+	}
+	function dochang(){
+		//document.getElementById
+		//alert(this.options[this.selectedIndex].innerHTML);
+		//var findVLevelH = document.getElementById("levelsudu");
+		//findVLevel = findVLevelH[findVLevelH.selectedIndex].value;
+		//alert(findVLevel);
+		loadData(1);
+	}
+	/*********************************************************************
+		以下是 数据存储方法
+	*/
+	//组装数据 level
+	function generateLevel(){
+		var levelH = document.getElementsByName("level"), level = 0;
+		levelH.forEach(function(v, i){
+			if(v.checked){
+				level = v.value;
+			}
+		});
+		return level;
+	}
+	//组装vlevel
+	function generateVLevel(){
+		var vlevelH = document.getElementById("levelsudu");
+		var vlevel = vlevelH[vlevelH.selectedIndex].value;
+		return vlevel;
+	}
+	//组装score
+	function generateScore(){
+		var scoreS = document.getElementById("timeinfo1").innerText;
+		var scoreMS = document.getElementById("timeinfo2").innerText;
+		var score = scoreS+'.'+scoreMS;
+		return score;
+	}
+	//功能拓展，将相关信息保存到数据库中
+	function ajax(type, url, data, success, failed){
+		var xhr = null;
+		if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();
+		}else{
+			xhr = new ActiveObject('Microsoft.XMLHTTP');
+		}
+		
+		var random = Math.random();
+		if(typeof data == 'object'){
+			var str = '';
+			for(var key in data){
+				str += key + '=' +data[key] + '&';
+			}
+			data = str.replace(/&$/, '');
+		}
+		
+		if(type.toUpperCase()=='GET'){
+			if(data){
+				xhr.open('GET', url + '?' +data, true);
+			}else{
+				xhr.open('GET', url + '?t='+random, true);
+			}
+			xhr.send();
+		}else if(type.toUpperCase()=='POST'){
+			xhr.open('POST', url, true);
+			//如果要向html表单那样post请求，需要添加消息头
+			xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+			xhr.send(data);
+		}
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					success(xhr.responseText);
+				}else{
+					if(failed){
+						failed(xhr.status)
+					}
+				}
+			}
+		}
+	}
+	/****************************************************************************************
+	以下是数据查询
+	*/
+	function loadData(type){
+		var findLevelH, findVLevelH, findLevel, findVLevel;
+		if(type==1){//
+			findLevelH = document.getElementsByName("level");
+			findVLevelH = document.getElementById("levelsudu");
+			for(var i=0; i<findLevelH.length;i++){
+				if(findLevelH[i].checked){
+					findLevel = findLevelH[i].value;
+				}
+			}
+			findVLevel = findVLevelH[findVLevelH.selectedIndex].value;
+		}else{//点击查询
+			findLevelH = document.getElementById("findlevel");
+			findVLevelH = document.getElementById("findvlevel");
+			findLevel = findLevelH[findLevelH.selectedIndex].value;
+			findVLevel = findVLevelH[findVLevelH.selectedIndex].value;
+		}
+		//alert(findLevel);
+		//alert(findVLevel);
+		//加载数据
+		var data = {level:findLevel,vlevel:findVLevel};
+		ajax('POST', 'find', data, function(data){
+			//填充数据
+			//alert(data);
+			var arr = data.split("#");
+			var html = '';
+			for(var i=0; i<arr.length-1; i++){
+				if(i%2==0){
+					html+='<tr>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[0]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[1]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[2]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[3]+'</td>'+
+						'</tr>';
+				}else{
+					html+='<tr style="border:1px solid red;background:#ccc;">'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[0]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[1]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[2]+'</td>'+
+						'<td style=text-align:left;width:20%;>'+arr[i].split(",")[3]+'</td>'+
+						'</tr>';
+				}
+			}
+			document.getElementById("tby").innerHTML= html;
+		}, function(error){alert(error)});
+	}
+
+</script>
+
+</html>

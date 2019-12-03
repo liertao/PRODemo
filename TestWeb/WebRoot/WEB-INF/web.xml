@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+  <servlet>
+  	<servlet-name>DataServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.DataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataServlet</servlet-name>
+  	<url-pattern>/save</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DataFindServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.DataFindServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataFindServlet</servlet-name>
+  	<url-pattern>/find</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 项目管理系统 -->
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ItemSaveServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.ItemSaveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ItemSaveServlet</servlet-name>
+  	<url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ItemFindServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.ItemFindServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ItemFindServlet</servlet-name>
+  	<url-pattern>/findItem</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ItemDelServlet</servlet-name>
+  	<servlet-class>let.youxi.servlet.ItemDelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ItemDelServlet</servlet-name>
+  	<url-pattern>/delItem</url-pattern>
+  </servlet-mapping>
+  
+	<!-- 拦截 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>let.youxi.filters.LoginFilter</filter-class>
+	</filter>
+	
+	<!-- 配置多个映射，哪些请求执行过滤器 -->
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/WEB-INF/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
