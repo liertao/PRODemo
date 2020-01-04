@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="../../css/about.css">
+<link rel="stylesheet" type="text/css" href="../../css/itemscss/items.css">
+<link rel="stylesheet" type="text/css" href="../../css/itemscss/single.css">
+<style>
+.page { width:100%;background:#F0F0F0 url('../../images/events/dian2.png') repeat-x; }
+</style>
+<title>质量管理</title>
+</head>
+<body>
+<div class="page">
+<div class="header">
+<div class="logo"><a href="http://47.93.192.2/web/html/items/index.html"><img src="../../images/events/logo.png" alt="站长之家"></a></div>
+<ul class="link">
+<li><a href="http://47.93.192.2/web/html/items/index.html">首页</a></li>
+<li class="active"><a href="http://47.93.192.2/web/html/items/items.html">质量管理</a></li>
+<li><a href="http://47.93.192.2/web/html/items/events.html">大事记</a></li>
+<li><a href="http://47.93.192.2/web/html/items/flowz.html">流程图</a></li>
+<li><a href="http://47.93.192.2/web/html/items/files.html">附件列表</a></li>
+</ul>
+</div>
+<!-- 
+<div style="margin:10px;">
+ -->
+<div class="box" style="height:100%;">
+        <!-- 第一部分 -->
+        <div class="firstBox">
+            <h5>开发项明细：</h5>
+            <button id="query">查询</button>
+            <button id="button">新增</button>
+            <button id="modify">修改</button>
+            <button id="del">删除</button>
+            <!-- 全选，全部取消选中 -->
+            <label style="padding-left:20px;"><input name="chose" type="radio" value="1" onclick="setRowClass2(1)"/>全选</label> 
+			<label style="padding-left:10px;"><input name="chose" type="radio" value="2" onclick="setRowClass2(2)"/>全部取消</label> 
+			<!-- 
+			<button id="signout" style="margin-right:20px;float:right;background: #fff;border: 1px solid #fff;">退出登录</button>
+			 -->
+            <table id="ttab">
+                <thead id="thd">
+                    <tr>
+                    	<th style=text-align:center;font-size:15px;font-weight:bold;width:4%;>序号</th>
+                    	<th style="display:none;">ID主键</th>
+                        <th style=text-align:left;font-size:15px;font-weight:bold;width:12%;>开发项名称</th>
+                        <th style=text-align:left;font-size:15px;font-weight:bold;width:26%;>开发项描述</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:7%;>开发人员</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:10%;>计划完成时间</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:8%;>开发状态</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:8%;>测试状态</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:9%;>开发文档</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:7%;>制单人</th>
+                        <th style=text-align:center;font-size:15px;font-weight:bold;width:15%;>制单日期</th>
+                    </tr>
+                </thead>
+                <tbody id="tby">
+                </tbody>
+            </table>
+        </div>
+        <!-- 第二部分 -->
+        <div id="twoBox" onmousedown="mouseDown(this,event)" onmousemove="mouseMove(event)" onmouseup="mouseUp(event)">
+            <div class="twoBox_lever">
+                <div class="twoBox_lever_two">
+                    <div class="two_title">
+                        <p>新增开发项</p>
+                    </div>
+                    <form>
+                        <label style="float:left;"><span style="padding-right:16px;">开发项名称：</span>
+                            <input type="text" id="add_item" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:16px;">开发项描述：</span>
+                            <input type="text" id="add_itemcomm" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:16px;">开发责任人：</span>
+                            <input type="text" id="add_itemdev" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">计划完成时间：
+                        	<input style="margin-left:7px;" type="date" id="add_plandate" autocomplete="off" placeholder="请输入内容">
+                        </label><br>
+                        <label style="float:left;width:50%;"><span style="padding-right:32px;">开发状态：</span>
+                        	<select id="add_itemstatus" name="add_itemstatus" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="待开发" checked="checked">待开发</option>
+								<option value="开发中">开发中</option>
+								<option value="已完成">已完成</option>
+							</select>
+							<!-- 
+							<input type="text" id="add_itemstatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                        <label style="float:left"><span style="padding-right:32px;">测试状态：</span>
+                        	<select id="add_itemteststatus" name="add_itemteststatus" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="待测试" checked="checked">待测试</option>
+								<option value="测试中">测试中</option>
+								<option value="已关">已关闭</option>
+							</select>
+							<!-- 
+							<input type="text" id="add_itemteststatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                        <label style="float:left;padding-top: 6px;"><span style="padding-right:32px;">开发文档：</span>
+                        	<select id="add_itemdoc" name="add_itemdoc" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="未编制" checked="checked">未编制</option>
+								<option value="在编制">在编制</option>
+								<option value="已完成">已完成</option>
+								<option value="无">无</option>
+							</select>
+							<!-- 
+							<input type="text" id="add_itemdoc" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                    </form>
+                    <div class="two_footer">
+                        <!-- <button>保存</button> -->
+                        <button id="addok">保存</button>
+                        <button id="addcancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第三部分 -->
+        <div id="thrBox" onmousedown="mouseDownM(this,event)" onmousemove="mouseMoveM(event)" onmouseup="mouseUpM(event)">
+            <div class="thrBox_lever">
+                <div class="thrBox_lever_two">
+                    <div class="thr_title">
+                        <p>开发项修改</p>
+                    </div>
+                    <form>
+                        <label style="float:left">ID：
+                            <input type="text" disabled="disabled" id="mod_itemid" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:16px;">开发项名称：</span>
+                            <input type="text" id="mod_item" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:16px;">开发项描述：</span>
+                            <input type="text" id="mod_itemcomm" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:16px;">开发责任人：</span>
+                            <input type="text" id="mod_itemdev" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">计划完成时间：
+                            <input style="margin-left:7px;" type="date" id="mod_plandate" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left"><span style="padding-right:32px;">开发状态：</span>
+                        	<select id="mod_itemstatus" name="mod_itemstatus" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="待开发" checked="checked">待开发</option>
+								<option value="开发中">开发中</option>
+								<option value="已完成">已完成</option>
+							</select>
+							<!-- 
+							<input type="text" id="mod_itemstatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                        <label style="float:left"><span style="padding-right:10px;padding-left:10px;">测试状态：</span>
+                        	<select id="mod_itemteststatus" name="mod_itemteststatus" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="待测试" checked="checked">待测试</option>
+								<option value="测试中">测试中</option>
+								<option value="已关闭">已关闭</option>
+							</select>
+							<!-- 
+							<input type="text" id="mod_itemteststatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                        <label style="float:left;padding-top: 6px;"><span style="padding-right:32px;">开发文档：</span>
+                        	<select id="mod_itemdoc" name="mod_itemdoc" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+								<option value="未编制" checked="checked">未编制</option>
+								<option value="在编制">在编制</option>
+								<option value="已完成">已完成</option>
+								<option value="无">无</option>
+							</select>
+							<!-- 
+							<input type="text" id="mod_itemdoc" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                    </form>
+                    <div class="thr_footer">
+                        <!-- <button>保存</button> -->
+                        <button id="modok">保存</button>
+                        <button id="modcancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第四部分  查询条件框 -->
+        <div id="forBox" onmousedown="mouseDownM(this,event)" onmousemove="mouseMoveM(event)" onmouseup="mouseUpM(event)">
+            <div class="forBox_lever">
+                <div class="forBox_lever_two">
+                    <div class="for_title">
+                        <p>查询</p>
+                    </div>
+                    <div class="thr_footer">
+                        <button id="findok">查询</button>
+                        <button id="findcancel">关闭</button>
+                    </div>
+                    <form>
+                        <label style="float:left">开发项名称：
+                            <input type="text" id="find_item" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发项描述：
+                            <input type="text" id="find_itemcomm" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left">开发责任人：
+                            <input type="text" id="find_itemdev" autocomplete="off" placeholder="请输入内容">
+                        </label>
+                        <label style="float:left;padding-top:3px;"><span style="padding-right:16px;">开发状态：</span>
+                        	<select id="find_itemstatus" name="find_itemstatus" style="margin-left:3px;width:70px;" onchanged="" onchange="">
+                        		<option value=""></option>
+								<option value="待开发">待开发</option>
+								<option value="开发中">开发中</option>
+								<option value="已完成">已完成</option>
+							</select>
+							<!-- 
+							<input type="text" id="mod_itemstatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                        <label style="float:left;padding-top:3px;"><span style="padding-right:10px;padding-left:10px;">测试状态：</span>
+                        	<select id="find_itemteststatus" name="find_itemteststatus" style="margin-left:5px;width:70px;" onchanged="" onchange="">
+                        		<option value=""></option>
+								<option value="待测试">待测试</option>
+								<option value="测试中">测试中</option>
+								<option value="已关闭">已关闭</option>
+							</select>
+							<!-- 
+							<input type="text" id="mod_itemteststatus" autocomplete="off" placeholder="请输入内容">
+							 -->
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 
+<div class="box">
+	<ul class="event_year">
+		<li class="current"><label for="2013">2013</label></li>
+		<li><label for="2012">2012</label></li>
+		<li><label for="2011">2011</label></li>
+	</ul>
+	<ul class="event_list">
+		<div>
+			<h3 id="2013">2013</h3>
+			<li><span>5月</span><p><span>站长之家专栏改版上线</span></p></li>
+			<li><span>4月</span><p><span>站长工具旗下产品，超级监控上线</span></p>
+			</li>
+			<li><span>3月</span><p><span>站长之家创业栏目上线</span></p></li>
+		</div>
+		<div>
+			<h3 id="2012">2012</h3>
+			<li><span>9月</span><p><span>站长之家北京分公司成立</span></p></li>
+		</div>
+		<div>
+			<h3 id="2011">2011</h3>
+			<li><span>3月13日</span><p><span><a href="http://www.313.com/" target="_blank">建站大师（www.313.com）上线</a></span></p></li>
+			<li><span>3月26日</span><p><span>站长论坛荣获<a href="http://bbs.ifeng.com/special/bbs100/" target="_blank">2010年第二届中文论坛100强称号（名列第50位）</a></span></p></li>
+			<li><span>4月-11月</span><p><span>4月-11月 站长之家<a href="http://9th.chinaz.com/" target="_blank">九周年全国交流会启动（厦门、南京、杭州、广州、合肥、武汉、西安、重庆、上海等地）</a>，同时宣布与新浪微博达成<a href="http://9th.chinaz.com/tianshijijin.aspx" target="_blank">微博创新基金合作，启动中小站长专项投资</a></span></p></li>
+			<li><span>6月11日</span><p><span><a href="http://open.313.com" target="_blank">推出建站大师开放平台open.313.com</a></span></p></li>
+			<li><span>9月10日</span><p><span>站长之家北京分公司成立</span></p></li>
+		</div>
+	</ul>
+	<div class="clearfix"></div>
+	</div>
+</div>
+-->
+<script src="../../js/jquery.min_v1.0.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../js/items/itemsFN.js"></script>
+<script type="text/javascript" src="../../js/items/toolFN.js"></script>
+<script>
+$(function(){
+	$('label').click(function(){
+		$('.event_year>li').removeClass('current');
+		$(this).parent('li').addClass('current');
+		var year = $(this).attr('for');
+		$('#'+year).parent().prevAll('div').slideUp(800);
+		$('#'+year).parent().slideDown(800).nextAll('div').slideDown(800);
+	});
+});
+</script>
+<script>
+    window.onload = function () {
+    	setNow();//设置全局时间框为当前时间 YYYY-mm-dd
+    	//登冲击按钮监控
+    	//document.getElementById("signout").onclick = function(){
+    	//	signout();
+    	//}
+    	document.getElementsByName("input[name=chose]").change = function(){
+    		alert(1);
+    	}
+    	//打开查询窗口
+        document.getElementById("query").onclick = function () {
+            document.getElementById("forBox").classList.add("show");
+        }
+        //关闭查询窗口
+        document.getElementById("findcancel").onclick = function () {
+        debugger;
+            document.getElementById("forBox").classList.remove("show");
+        }
+        //查询按钮
+        document.getElementById("findok").onclick = function () {
+        	//查询数据
+        	var findItem = document.getElementById("find_item").value;
+        	var findItemcomm = document.getElementById("find_itemcomm").value;
+        	var findItemdev = document.getElementById("find_itemdev").value;
+        	var findItemstatus = document.getElementById("find_itemstatus")[document.getElementById("find_itemstatus").selectedIndex].value;
+        	var findItemteststatus = document.getElementById("find_itemteststatus")[document.getElementById("find_itemteststatus").selectedIndex].value;
+        	var params = {findItem:findItem,findItemcomm:findItemcomm,findItemdev:findItemdev,
+        					findItemstatus:findItemstatus,findItemteststatus:findItemteststatus}
+        	loadData(params);
+            document.getElementById("forBox").classList.remove("show");
+        }
+        document.getElementById("button").onclick = function () {
+            document.getElementById("twoBox").classList.add("show");
+        }
+        
+        document.getElementById("addcancel").onclick = function () {
+            document.getElementById("twoBox").classList.remove("show");
+        }
+        //弹出修改之前，需要进行查询
+        document.getElementById("modify").onclick = function () {
+        	var tbl = document.getElementById("ttab");
+        	var con = false, count = 0, index=0;
+	    	for(var i=0;i<tbl.rows.length; i++){
+	    		if(tbl.rows[i].classList.contains("checked")){
+	    			con = true;
+	    			count++;
+	    			index = i;
+	    		}
+	    	}
+	    	if(!con){
+	    		alert('请选中要修改的数据');
+	    		return false;
+	    	}
+	    	if(count>1){
+	    		alert('请选中一条数据进行修改');
+	    		return false;
+	    	}
+	    	//填充数据
+	    	document.getElementById("mod_itemid").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[1].innerText;
+	    	document.getElementById("mod_item").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[2].innerText;
+	    	document.getElementById("mod_itemcomm").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[3].innerText;
+	    	document.getElementById("mod_itemdev").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[4].innerText;
+	    	document.getElementById("mod_plandate").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[5].innerText;
+	    	document.getElementById("mod_itemstatus").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[6].innerText;
+	    	document.getElementById("mod_itemteststatus").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[7].innerText;
+	    	document.getElementById("mod_itemdoc").value=document.getElementsByTagName("tr")[index].getElementsByTagName("td")[8].innerText;
+            document.getElementById("thrBox").classList.add("show");
+        }
+        document.getElementById("modcancel").onclick = function () {
+            document.getElementById("thrBox").classList.remove("show");
+        }
+        //新增保存
+        document.getElementById("addok").onclick = function () {
+        	//获取输入数据
+        	var item_name = document.getElementById("add_item").value;
+        	var item_comm = document.getElementById("add_itemcomm").value;
+        	var item_dev = document.getElementById("add_itemdev").value;
+        	var item_plandate = document.getElementById("add_plandate").value;
+        	//var item_status = document.getElementById("add_itemstatus").value;
+        	//var item_status = document.getElementById("add_itemstatus").selectedIndex
+			var item_status = document.getElementById("add_itemstatus")[document.getElementById("add_itemstatus").selectedIndex].value;
+        	//var item_teststatus = document.getElementById("add_itemteststatus").value;
+        	var item_teststatus = document.getElementById("add_itemteststatus")[document.getElementById("add_itemteststatus").selectedIndex].value;
+        	//var item_doc = document.getElementById("add_itemdoc").value;
+        	var item_doc = document.getElementById("add_itemdoc")[document.getElementById("add_itemdoc").selectedIndex].value;
+        	if(item_name==null || item_name==""){
+        		alert("开发项名称不能为空");
+        		return false;
+        	}
+        	if(item_comm==null || item_comm==""){
+        		alert("开发项描述不能为空");
+        		return false;
+        	}
+        	if(item_dev==null || item_dev==""){
+        		alert("开发项负责人不能为空");
+        		return false;
+        	}
+        	var data = {item_name:item_name,item_comm:item_comm,item_dev:item_dev,item_plandate:item_plandate,
+        	item_status:item_status,item_teststatus:item_teststatus,item_doc:item_doc};
+			MAjax('POST', 'add', data, function(data){
+				var obj = eval("("+data+")");
+				if(obj.success){
+					//alert(obj.msg);
+					loadData();
+				}else{
+					alert(obj.msg);
+				};
+			}, function(error){alert(error)});
+            document.getElementById("twoBox").classList.remove("show");
+        }
+        //修改保存
+        document.getElementById("modok").onclick = function () {
+        	//获取输入数据
+        	debugger;
+        	var id = document.getElementById("mod_itemid").value;
+        	var item_name = document.getElementById("mod_item").value;
+        	var item_comm = document.getElementById("mod_itemcomm").value;
+        	var item_dev = document.getElementById("mod_itemdev").value;
+        	var item_plandate = document.getElementById("mod_plandate").value;
+        	var item_itemstatus = document.getElementById("mod_itemstatus")[document.getElementById("mod_itemstatus").selectedIndex].value;
+        	var item_itemteststatus = document.getElementById("mod_itemteststatus")[document.getElementById("mod_itemteststatus").selectedIndex].value;
+        	var item_itemdoc = document.getElementById("mod_itemdoc")[document.getElementById("mod_itemdoc").selectedIndex].value;
+        	//var item_itemstatus = document.getElementById("mod_itemstatus").value;
+        	//var item_itemteststatus = document.getElementById("mod_itemteststatus").value;
+        	//var item_itemdoc = document.getElementById("mod_itemdoc").value;
+        	if(item_name==null || item_name==""){
+        		alert("开发项名称不能为空");
+        		return false;
+        	}
+        	if(item_comm==null || item_comm==""){
+        		alert("开发项描述不能为空");
+        		return false;
+        	}
+        	if(item_dev==null || item_dev==""){
+        		alert("开发项负责人不能为空");
+        		return false;
+        	}
+        	if(item_plandate==null || item_plandate==""){
+        		alert("计划完成时间不能为空");
+        		return false;
+        	}
+        	if(item_itemstatus==null || item_itemstatus==""){
+        		alert("开发状态不能为空");
+        		return false;
+        	}
+        	if(item_itemteststatus==null || item_itemteststatus==""){
+        		alert("测试状态不能为空");
+        		return false;
+        	}
+        	if(item_itemdoc==null || item_itemdoc==""){
+        		alert("开发文档状态不能为空");
+        		return false;
+        	}
+        	var data = {id:id,item_name:item_name,item_comm:item_comm,item_dev:item_dev,
+			        	item_plandate:item_plandate,item_status:item_itemstatus,
+			        	item_teststatus:item_itemteststatus,item_doc:item_itemdoc};
+			MAjax('POST', 'add', data, function(data){
+				var obj = eval("("+data+")");
+				if(obj.success){
+					//alert(obj.msg);
+					loadData();
+				}else{
+					alert(obj.msg);
+				};
+			}, function(error){alert(error)});
+            document.getElementById("thrBox").classList.remove("show");
+        }
+        //删除数据
+        document.getElementById("del").onclick = function () {
+        	var r = confirm("确认删除选中的数据？");
+			if (r == true) {
+			    var tbl = document.getElementById("ttab");
+	        	var con = false, index=0;
+	        	var ids = "";
+		    	for(var i=0;i<tbl.rows.length; i++){
+		    		if(tbl.rows[i].classList.contains("checked")){
+		    			con = true;
+		    			index = i;
+		    			ids += document.getElementsByTagName("tr")[index].getElementsByTagName("td")[1].innerText+",";
+		    		}
+		    	}
+		    	if(!con){
+		    		alert('请选中要删除的数据');
+		    		return false;
+		    	}
+	        	//获取输入数据
+	        	var data = {ids:ids.substr(0,ids.length-1)};
+				MAjax('POST', 'delItem', data, function(data){
+					var obj = eval("("+data+")");
+					debugger;
+					if(obj.success){
+						loadData();
+					}else{
+						alert(obj.msg);
+					};
+				}, function(error){alert(error)});
+	            document.getElementById("thrBox").classList.remove("show");
+			}
+        }
+    }
+    //加载数据
+    loadData();
+</script>
+<div style="text-align:center;clear:both">
+<p>阿里云提供后台服务，服务器版本CentOS Linux release 7.7</p>
+<p><span>后台管理</span>&nbsp;&nbsp;&nbsp;<span><a href="/web/signout" onClick="return confirm('确定退出系统?');">退出登录</a></span></p>
+</div>
+</body>
+</html>

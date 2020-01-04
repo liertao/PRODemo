@@ -6,7 +6,7 @@ function createwall(){
 		wall.style.width="60px";
 		wall.style.height="60px";
 		wall.setAttribute("id", "zhuan"+(i+1));
-		wall.style.backgroundImage="url(images/zhuan1.jpg)";
+		wall.style.backgroundImage="url(../../images/zhuan1.jpg)";
 		wall.style.display="block";
 		if(i<=14){
 			wall.style.top="200px";
@@ -21,12 +21,12 @@ function createwall(){
 			wall.setAttribute("id", "zhuanb"+(i-44));
 			wall.style.top="380px";
 			wall.style.left=190+60*(i-44)+""+"px";
-			wall.style.backgroundImage="url(images/zhuanb1.jpg)";
+			wall.style.backgroundImage="url(../../images/zhuanb1.jpg)";
 		}else{
 			wall.setAttribute("id", "zhuanb"+(i-44));
 			wall.style.top="380px";
 			wall.style.left=550+60*(i-47)+""+"px";
-			wall.style.backgroundImage="url(images/zhuanb1.jpg)";
+			wall.style.backgroundImage="url(../../images/zhuanb1.jpg)";
 		}
 
 		document.getElementById("frame").appendChild(wall);

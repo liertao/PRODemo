@@ -1,0 +1,330 @@
+<html>
+<head>
+<title>坦克大战</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+</head>
+<body onload="createwall();">
+
+<div id="frame" style="box-shadow:7px 7px 18px #525352;margin-left:60px;border:1px solid black;width:900px;height:600px;background-color:#515569;">
+	<p id="txt" style="position:absolute;font-size:50px;left:430px;top:270px;display:none;z-index:9001;color:white;"><b><a style="color:#d6f763;text-decoration:none;" href="javascript:refresh();">restart</a></b></p>
+	<div id="xin" style="position:absolute;width:60px;height:60px;left:460px;top:550px;display:block;background-image:url(../../images/xin1.png);"></div>
+	<div id="wzhuan1" style="position:absolute;width:30px;height:60px;left:430px;top:550px;display:block;background-image:url(../../images/zhuans1.png);"></div>
+	<div id="wzhuan2" style="position:absolute;width:30px;height:60px;left:520px;top:550px;display:block;background-image:url(../../images/zhuans1.png);"></div>
+	<div id="wzhuan3" style="position:absolute;width:60px;height:30px;left:430px;top:520px;display:block;background-image:url(../../images/zhuanh1.png);"></div>
+	<div id="wzhuan4" style="position:absolute;width:60px;height:30px;left:490px;top:520px;display:block;background-image:url(../../images/zhuanh1.png);"></div>
+	<div id="dtk01" style="position:absolute;width:40px;height:50px;left:80px;top:20px;display:block;"></div>
+	<div id="dtk02" style="position:absolute;width:40px;height:50px;left:150px;top:20px;display:block;"></div>
+	<div id="dtk03" style="position:absolute;width:40px;height:50px;left:220px;top:20px;display:block;"></div>
+	<div id="dtk04" style="position:absolute;width:40px;height:50px;left:310px;top:20px;display:block;"></div>
+	<div id="dtk05" style="position:absolute;width:40px;height:50px;left:390px;top:20px;display:block;"></div>
+	<div id="dtk06" style="position:absolute;width:40px;height:50px;left:490px;top:20px;display:block;"></div>
+	<div id="dtk07" style="position:absolute;width:40px;height:50px;left:590px;top:20px;display:block;"></div>
+	<div id="dtk08" style="position:absolute;width:40px;height:50px;left:670px;top:20px;display:block;"></div>
+	<div id="dtk09" style="position:absolute;width:40px;height:50px;left:770px;top:20px;display:block;"></div>
+	<div id="dtk010" style="position:absolute;width:40px;height:50px;left:880px;top:20px;display:block;"></div>
+	<div id="tk00" style="position:absolute;width:40px;height:50px;left:380px;top:558px;background-image:url(../../images/tkyx02.png);"></div>
+	<!-- 
+	<div id="qbbj" style="position:absolute;width:40px;height:50px;left:250px;top:300px;border:1px solid black;"></div>
+	
+	<div id="zhuan001" style="position:absolute;width:50px;height:50px;left:100px;top:200px;background-image:url(../../images/zhuan01.jpg);display:block;"></div>
+	 -->
+</div>
+</body>
+<script type="text/javascript" src="../../js/youxi0201.js"></script>
+<script type="text/javascript" src="../../js/youxi02.js"></script>
+<script type="text/javascript">
+	//坦克移动函数
+	var flag;//子弹运行方向表示，从坦克运行方向传递给子弹作为子弹的初始速度方向
+	var yc = 0;//系统运行时间，用于判定绿色坦克产生的延时计算
+	var i=0;//用于子弹的Id
+	var v = 0;//用于标示新坦克产生新的运行方向
+	var zdArray = new Array();//创建一个子弹数组，用于存放生成的子弹（主要存放标示uzd00i）
+	var timeArray = new Array();//时间数组用于防止子弹的连续产生
+	var h = 0;//用于标示新坦克生成的子弹的Id值
+	var uzd="uzd";//用于表示单个子弹的运行方向
+	var dzd="dzd";
+	var timernewzd;//新坦克生成的子弹的计时器
+	window.onkeydown = function(e){
+		//初始化坦克的速度
+		var speed = 5;
+		e = window.event||e;
+		switch(e.keyCode){
+		
+		case 37://左键
+		speedx=4;
+		//换背景
+		document.getElementById("tk00").style.backgroundImage="url(../../images/tkyx01.png)";
+		bx = document.getElementById("tk00").offsetLeft;
+		by = document.getElementById("tk00").offsetTop;
+		//先旋转，使方向指向目标方向(长宽交换)
+		//先判定是否为横向
+		if(document.getElementById("tk00").style.width!="50px"){
+			document.getElementById("tk00").style.width="50px";
+			document.getElementById("tk00").style.height="40px";
+			document.getElementById("tk00").offsetLeft-=5;
+			document.getElementById("tk00").offsetTop+=5;
+		}
+		//为英雄坦克子弹循环6块白砖块
+		//左快最值
+		var lxmin = document.getElementById("zhuanb"+1).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+3).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+		
+		var lxmin = document.getElementById("zhuanb"+4).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+6).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+			//for(var zdi=0;zdi<6;zdi++){
+			//	var zdxmin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)-10;
+			//	var zdxmax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)+60;
+			//	var zdymin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)-10;
+			//	var zdymax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)+60;
+			//	if(bx<=zdxmax&&by>=zdymin&&by<=zdymax){
+			//		speedx=0;
+			//	}
+			//}
+		bx=bx-speedx;
+		document.getElementById("tk00").style.left=bx+"px";
+		//判断出界
+		if(document.getElementById("tk00").offsetLeft<=68){
+			document.getElementById("tk00").style.left="68px";
+		}
+		document.getElementById("tk00").style.top=by+"px";
+		flag=01;
+		break;
+		
+		case 38://向上
+		speedx=4;
+		//换背景
+		document.getElementById("tk00").style.backgroundImage="url(../../images/tkyx02.png)";
+		bx = document.getElementById("tk00").offsetLeft;
+		by = document.getElementById("tk00").offsetTop;
+		//先旋转，使方向指向目标方向(长宽交换)
+		if(document.getElementById("tk00").style.width!="40px"){
+			document.getElementById("tk00").style.width="40px";
+			document.getElementById("tk00").style.height="50px";
+			document.getElementById("tk00").offsetLeft+=5;
+			document.getElementById("tk00").offsetTop-=5;
+		}
+		//为英雄坦克子弹循环6块白砖块
+		//左快最值
+		var lxmin = document.getElementById("zhuanb"+1).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+3).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+		
+		var lxmin = document.getElementById("zhuanb"+4).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+6).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+			//for(var zdi=0;zdi<6;zdi++){
+			//	var zdxmin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)-10;
+			//	var zdxmax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)+60;
+			//	var zdymin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)-10;
+			//	var zdymax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)+60;
+			//	if(bx>=zdxmin&&bx<=zdxmax&&by<=zdymax){
+			//		speedx=0;
+			//	}
+			//}
+		
+		by=by-speedx;
+		document.getElementById("tk00").style.top=by+"px";
+		//判断出界
+		if(document.getElementById("tk00").offsetTop<=8){
+			document.getElementById("tk00").style.top="8px";
+		}
+		document.getElementById("tk00").style.left=bx+"px";
+		flag=02;
+		break;
+		
+		case 39://右键
+		speedx=4;
+		//换背景
+		document.getElementById("tk00").style.backgroundImage="url(../../images/tkyx03.png)";
+		bx = document.getElementById("tk00").offsetLeft;
+		by = document.getElementById("tk00").offsetTop;
+		//先旋转，使方向指向目标方向(长宽交换)
+		//先判定是否为横向
+		if(document.getElementById("tk00").style.width!="50px"){
+			document.getElementById("tk00").style.width="50px";
+			document.getElementById("tk00").style.height="40px";
+			document.getElementById("tk00").offsetLeft-=5;
+			document.getElementById("tk00").offsetTop+=5;
+		}
+		//为英雄坦克子弹循环6块白砖块
+		//左快最值
+		var lxmin = document.getElementById("zhuanb"+1).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+3).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+		
+		var lxmin = document.getElementById("zhuanb"+4).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+6).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+			//for(var zdi=0;zdi<6;zdi++){
+			//	var zdxmin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)-10;
+			//	var zdxmax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)+60;
+			//	var zdymin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)-10;
+			//	var zdymax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)+60;
+			//	if(bx>=zdxmin&&by>=zdymin&&by<=zdymax){
+			//		speedx=0;
+			//	}
+			//}
+		bx=bx+speedx;
+		document.getElementById("tk00").style.left=bx+"px";
+		//判断出界
+		if(document.getElementById("tk00").offsetLeft>=928){
+			document.getElementById("tk00").style.left="928px";
+		}
+		document.getElementById("tk00").style.top=by+"px";
+		flag=03;
+		break;
+		
+		case 40://向下
+		speedx=4;
+		//换背景
+		document.getElementById("tk00").style.backgroundImage="url(../../images/tkyx04.png)";
+		bx = document.getElementById("tk00").offsetLeft;
+		by = document.getElementById("tk00").offsetTop;
+		//先旋转，使方向指向目标方向(长宽交换)
+		if(document.getElementById("tk00").style.width!="40px"){
+			document.getElementById("tk00").style.width="40px";
+			document.getElementById("tk00").style.height="50px";
+			document.getElementById("tk00").offsetLeft+=5;
+			document.getElementById("tk00").offsetTop-=5;
+		}
+		//为英雄坦克子弹循环6块白砖块
+		//左快最值
+		var lxmin = document.getElementById("zhuanb"+1).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+3).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+		
+		var lxmin = document.getElementById("zhuanb"+4).offsetLeft;
+		var rxmax = document.getElementById("zhuanb"+6).offsetLeft;
+		var symin = document.getElementById("zhuanb"+1).offsetTop;
+		var xymax = document.getElementById("zhuanb"+1).offsetTop+60;
+		if(bx>=lxmin&&bx<=rxmax&&by>=symin&&by<=xymax){
+			speedx=0;
+		}
+		//	for(var zdi=0;zdi<6;zdi++){
+		//	/	var zdxmin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)-10;
+		//		var zdxmax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetLeft)+60;
+		//		var zdymin=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)-10;
+		//		var zdymax=parseInt(document.getElementById("zhuanb"+(zdi+1)).offsetTop)+60;
+		//		if(bx>=zdxmin&&bx<=zdxmax&&by<=zdymax){
+		//			speedx=0;
+		//		}
+		//	}
+		by=by+speedx;
+		document.getElementById("tk00").style.top=by+"px";
+		//判断出界
+		if(document.getElementById("tk00").offsetTop>=558){
+			document.getElementById("tk00").style.top="558px";
+		}
+		document.getElementById("tk00").style.left=bx+"px";
+		flag=04;
+		break;
+		
+		case 32:
+		//用于防止子弹过多
+		i++;
+		var time = showtime();
+		//alert(showtime());
+		timeArray=timeArray.concat(time);
+		if(i>=2){
+			if(Math.abs(timeArray[timeArray.length-1]-timeArray[timeArray.length-2])<=200){
+				i--;
+				timeArray.pop();
+				//alert(timeArray.length);
+				break;
+			}
+		}
+		uzd=uzd.substr(0,3)//截取获得单独的  uzd
+		bx = document.getElementById("tk00").offsetLeft;
+		by = document.getElementById("tk00").offsetTop;
+		//alert(document.getElementById("tk00").offsetLeft+10);
+		//alert(document.getElementById("tk00").offsetTop+10);
+		//生成一个子弹(生成一个div，该div根据定时器进行运动)
+		var zd001= document.createElement("div");
+		//zd001.style.backgroundColor="black";
+		zd001.style.position="absolute";
+		zd001.setAttribute("id", "zd00"+i);//生成具有单独标示的子弹
+		zd001.style.width="10px";
+		zd001.style.height="10px";
+		//alert(zd.getAttribute("id"));
+		//判定子弹的产生方向
+		if(flag==01){//左面产生子弹
+			zd001.style.left= bx-7+"px";
+			zd001.style.top= by+15+"px";
+			zd001.style.backgroundImage="url(../../images/zdfb1p.png)";
+		}else if(flag==02){//上面产生子弹
+			zd001.style.left= bx+15+"px";
+			zd001.style.top= by-7+"px";
+			zd001.style.backgroundImage="url(../../images/zdfb2p.png)";
+		}else if(flag==03){//右面产生子弹
+			zd001.style.left= bx+52+"px";
+			zd001.style.top= by+15+"px";
+			zd001.style.backgroundImage="url(../../images/zdfb3p.png)";
+		}else{//下面产生子弹
+			zd001.style.left= bx+15+"px";
+			zd001.style.top= by+52+"px";
+			zd001.style.backgroundImage="url(../../images/zdfb4p.png)";
+		}
+		zd001.style.display="block";
+		document.getElementById("frame").appendChild(zd001);
+		uzd=uzd+i;//每生成一个子弹的单独运行方向(uzd1)
+		uzd= uzd+flag;
+		//将每一个新生成的子弹压入数组
+		
+		//判定子弹的个数，限制div，防止子弹过多增加frame的压力
+		
+		zdArray=zdArray.concat(uzd);
+		//timer=window.setInterval(zdrun, 2);
+		//alert(zdArray.toString());
+		break;
+		}
+	}
+	
+	//
+	timer = window.setInterval(zdrun, 1);//子弹计时器
+	//timerd1 = window.setInterval(dtkrun1,50);
+	timernewzd = window.setInterval(dzdnewrun, 1);//新子弹的计时器
+	timerd1 = window.setInterval(dtkrun1,50);
+	
+	timernew = window.setInterval(dtknewrun, 50);
+	timerd2 = window.setInterval(dtkrun2,40);
+	timerd3 = window.setInterval(dtkrun3,50);
+	timerd4 = window.setInterval(dtkrun4,45);
+	timerd5 = window.setInterval(dtkrun5,55);
+	timerd6 = window.setInterval(dtkrun6,50);
+	timerd7 = window.setInterval(dtkrun7,40);
+	timerd8 = window.setInterval(dtkrun8,50);
+	timerd9 = window.setInterval(dtkrun9,45);
+	timerd10 = window.setInterval(dtkrun10,55);
+	
+</script>
+</html>

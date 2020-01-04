@@ -32,8 +32,15 @@ public class LoginFilter implements Filter {
 		if(logId==null || logId.equals("")){ 
 			//判断获取的路径不为空且不是访问登录页面或执行登录操作时跳转 
 			if(url!=null && !url.equals("") && ( url.indexOf("Login")<0 && url.indexOf("login")<0 )){ 
-				response.sendRedirect("login.html"); 
+				response.sendRedirect("/web/login.html"); 
 				return ; 
+			}
+			//如果路径重定向到了登录，进行修改
+			if(url.indexOf("Login")>0 || url.indexOf("login")>0){
+				String uuu = request.getServletPath();
+				String uuf = request.getContextPath();
+				
+				System.out.println(uuu);
 			}
 		}
 		//已通过验证，用户访问继续 

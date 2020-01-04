@@ -51,7 +51,7 @@ var dtkrun1 = function (){//敌方坦克1运行函数
 		dflag1 = dflag1;
 	}
 	if(dflag1==1){//向左
-		document.getElementById("dtk01").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk01").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk01").style.width!="50px"){
@@ -67,7 +67,7 @@ var dtkrun1 = function (){//敌方坦克1运行函数
 			dflag1 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag1==2){//向上
-		document.getElementById("dtk01").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk01").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk01").style.width!="40px"){
 			document.getElementById("dtk01").style.width="40px";
@@ -81,7 +81,7 @@ var dtkrun1 = function (){//敌方坦克1运行函数
 			dflag1 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag1=="3"){//向右
-		document.getElementById("dtk01").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk01").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk01").style.width!="50px"){
@@ -96,7 +96,7 @@ var dtkrun1 = function (){//敌方坦克1运行函数
 			dflag1 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk01").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk01").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk01").style.width!="40px"){
 			document.getElementById("dtk01").style.width="40px";
@@ -130,7 +130,7 @@ var dtkrun2 = function (){//敌方坦克1运行函数
 			dflag2 = dflag2;
 		}
 		if(dflag2==1){//向左
-			document.getElementById("dtk02").style.background="url(images/hdtk01.png)";
+			document.getElementById("dtk02").style.background="url(../../images/hdtk01.png)";
 			//先旋转，使方向指向目标方向(长宽交换)
 			//先判定是否为横向
 			if(document.getElementById("dtk02").style.width!="50px"){
@@ -146,7 +146,7 @@ var dtkrun2 = function (){//敌方坦克1运行函数
 				dflag2 = Math.floor(1+Math.random()*(5-1));
 			}
 		}else if(dflag2==2){//向上
-			document.getElementById("dtk02").style.background="url(images/hdtk02.png)";
+			document.getElementById("dtk02").style.background="url(../../images/hdtk02.png)";
 			//先旋转，使方向指向目标方向(长宽交换)
 			if(document.getElementById("dtk02").style.width!="40px"){
 				document.getElementById("dtk02").style.width="40px";
@@ -160,7 +160,7 @@ var dtkrun2 = function (){//敌方坦克1运行函数
 				dflag2 = Math.floor(1+Math.random()*(5-1));
 			}
 		}else if(dflag2=="3"){//向右
-			document.getElementById("dtk02").style.background="url(images/hdtk03.png)";
+			document.getElementById("dtk02").style.background="url(../../images/hdtk03.png)";
 			//先旋转，使方向指向目标方向(长宽交换)
 			//先判定是否为横向
 			if(document.getElementById("dtk02").style.width!="50px"){
@@ -175,7 +175,7 @@ var dtkrun2 = function (){//敌方坦克1运行函数
 				dflag2 = Math.floor(1+Math.random()*(5-1));
 			}
 		}else{//向下
-			document.getElementById("dtk02").style.background="url(images/hdtk04.png)";
+			document.getElementById("dtk02").style.background="url(../../images/hdtk04.png)";
 			//先旋转，使方向指向目标方向(长宽交换)
 			if(document.getElementById("dtk02").style.width!="40px"){
 				document.getElementById("dtk02").style.width="40px";
@@ -207,7 +207,7 @@ var dtkrun3 = function (){//敌方坦克1运行函数
 		dflag3 = dflag3;
 	}
 	if(dflag3==1){//向左
-		document.getElementById("dtk03").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk03").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk03").style.width!="50px"){
@@ -223,7 +223,7 @@ var dtkrun3 = function (){//敌方坦克1运行函数
 			dflag3 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag3==2){//向上
-		document.getElementById("dtk03").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk03").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk03").style.width!="40px"){
 			document.getElementById("dtk03").style.width="40px";
@@ -237,7 +237,7 @@ var dtkrun3 = function (){//敌方坦克1运行函数
 			dflag3 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag3=="3"){//向右
-		document.getElementById("dtk03").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk03").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk03").style.width!="50px"){
@@ -252,7 +252,7 @@ var dtkrun3 = function (){//敌方坦克1运行函数
 			dflag3 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk03").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk03").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk03").style.width!="40px"){
 			document.getElementById("dtk03").style.width="40px";
@@ -285,7 +285,7 @@ var dtkrun4 = function (){//敌方坦克1运行函数
 		dflag4 = dflag4;
 	}
 	if(dflag4==1){//向左
-		document.getElementById("dtk04").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk04").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk04").style.width!="50px"){
@@ -301,7 +301,7 @@ var dtkrun4 = function (){//敌方坦克1运行函数
 			dflag4 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag4==2){//向上
-		document.getElementById("dtk04").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk04").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk04").style.width!="40px"){
 			document.getElementById("dtk04").style.width="40px";
@@ -315,7 +315,7 @@ var dtkrun4 = function (){//敌方坦克1运行函数
 			dflag4 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag4=="3"){//向右
-		document.getElementById("dtk04").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk04").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk04").style.width!="50px"){
@@ -330,7 +330,7 @@ var dtkrun4 = function (){//敌方坦克1运行函数
 			dflag4 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk04").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk04").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk04").style.width!="40px"){
 			document.getElementById("dtk04").style.width="40px";
@@ -364,7 +364,7 @@ var dtkrun5 = function (){//敌方坦克1运行函数
 		dflag5 = dflag5;
 	}
 	if(dflag5==1){//向左
-		document.getElementById("dtk05").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk05").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk05").style.width!="50px"){
@@ -380,7 +380,7 @@ var dtkrun5 = function (){//敌方坦克1运行函数
 			dflag5 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag5==2){//向上
-		document.getElementById("dtk05").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk05").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk05").style.width!="40px"){
 			document.getElementById("dtk05").style.width="40px";
@@ -394,7 +394,7 @@ var dtkrun5 = function (){//敌方坦克1运行函数
 			dflag5 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag5=="3"){//向右
-		document.getElementById("dtk05").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk05").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk05").style.width!="50px"){
@@ -409,7 +409,7 @@ var dtkrun5 = function (){//敌方坦克1运行函数
 			dflag5 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk05").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk05").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk05").style.width!="40px"){
 			document.getElementById("dtk05").style.width="40px";
@@ -443,7 +443,7 @@ var dtkrun6 = function (){//敌方坦克1运行函数
 		dflag6 = dflag6;
 	}
 	if(dflag6==1){//向左
-		document.getElementById("dtk06").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk06").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk06").style.width!="50px"){
@@ -459,7 +459,7 @@ var dtkrun6 = function (){//敌方坦克1运行函数
 			dflag6 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag6==2){//向上
-		document.getElementById("dtk06").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk06").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk06").style.width!="40px"){
 			document.getElementById("dtk06").style.width="40px";
@@ -473,7 +473,7 @@ var dtkrun6 = function (){//敌方坦克1运行函数
 			dflag6 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag6=="3"){//向右
-		document.getElementById("dtk06").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk06").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk06").style.width!="50px"){
@@ -488,7 +488,7 @@ var dtkrun6 = function (){//敌方坦克1运行函数
 			dflag6 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk06").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk06").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk06").style.width!="40px"){
 			document.getElementById("dtk06").style.width="40px";
@@ -522,7 +522,7 @@ var dtkrun7 = function (){//敌方坦克1运行函数
 		dflag7 = dflag7;
 	}
 	if(dflag7==1){//向左
-		document.getElementById("dtk07").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk07").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk07").style.width!="50px"){
@@ -538,7 +538,7 @@ var dtkrun7 = function (){//敌方坦克1运行函数
 			dflag7 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag7==2){//向上
-		document.getElementById("dtk07").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk07").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk07").style.width!="40px"){
 			document.getElementById("dtk07").style.width="40px";
@@ -552,7 +552,7 @@ var dtkrun7 = function (){//敌方坦克1运行函数
 			dflag7 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag7=="3"){//向右
-		document.getElementById("dtk07").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk07").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk07").style.width!="50px"){
@@ -567,7 +567,7 @@ var dtkrun7 = function (){//敌方坦克1运行函数
 			dflag7 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk07").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk07").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk07").style.width!="40px"){
 			document.getElementById("dtk07").style.width="40px";
@@ -601,7 +601,7 @@ var dtkrun8 = function (){//敌方坦克1运行函数
 		dflag8 = dflag8;
 	}
 	if(dflag8==1){//向左
-		document.getElementById("dtk08").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk08").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk08").style.width!="50px"){
@@ -617,7 +617,7 @@ var dtkrun8 = function (){//敌方坦克1运行函数
 			dflag8 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag8==2){//向上
-		document.getElementById("dtk08").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk08").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk08").style.width!="40px"){
 			document.getElementById("dtk08").style.width="40px";
@@ -631,7 +631,7 @@ var dtkrun8 = function (){//敌方坦克1运行函数
 			dflag8 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag8=="3"){//向右
-		document.getElementById("dtk08").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk08").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk08").style.width!="50px"){
@@ -646,7 +646,7 @@ var dtkrun8 = function (){//敌方坦克1运行函数
 			dflag8 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk08").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk08").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk08").style.width!="40px"){
 			document.getElementById("dtk08").style.width="40px";
@@ -680,7 +680,7 @@ var dtkrun9 = function (){//敌方坦克1运行函数
 		dflag9 = dflag9;
 	}
 	if(dflag9==1){//向左
-		document.getElementById("dtk09").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk09").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk09").style.width!="50px"){
@@ -696,7 +696,7 @@ var dtkrun9 = function (){//敌方坦克1运行函数
 			dflag9 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag9==2){//向上
-		document.getElementById("dtk09").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk09").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk09").style.width!="40px"){
 			document.getElementById("dtk09").style.width="40px";
@@ -710,7 +710,7 @@ var dtkrun9 = function (){//敌方坦克1运行函数
 			dflag9 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag9=="3"){//向右
-		document.getElementById("dtk09").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk09").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk09").style.width!="50px"){
@@ -725,7 +725,7 @@ var dtkrun9 = function (){//敌方坦克1运行函数
 			dflag9 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk09").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk09").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk09").style.width!="40px"){
 			document.getElementById("dtk09").style.width="40px";
@@ -759,7 +759,7 @@ var dtkrun10 = function (){//敌方坦克1运行函数
 		dflag10 = dflag10;
 	}
 	if(dflag10==1){//向左
-		document.getElementById("dtk010").style.background="url(images/hdtk01.png)";
+		document.getElementById("dtk010").style.background="url(../../images/hdtk01.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk010").style.width!="50px"){
@@ -775,7 +775,7 @@ var dtkrun10 = function (){//敌方坦克1运行函数
 			dflag10 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag10==2){//向上
-		document.getElementById("dtk010").style.background="url(images/hdtk02.png)";
+		document.getElementById("dtk010").style.background="url(../../images/hdtk02.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk010").style.width!="40px"){
 			document.getElementById("dtk010").style.width="40px";
@@ -789,7 +789,7 @@ var dtkrun10 = function (){//敌方坦克1运行函数
 			dflag10 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else if(dflag10=="3"){//向右
-		document.getElementById("dtk010").style.background="url(images/hdtk03.png)";
+		document.getElementById("dtk010").style.background="url(../../images/hdtk03.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		//先判定是否为横向
 		if(document.getElementById("dtk010").style.width!="50px"){
@@ -804,7 +804,7 @@ var dtkrun10 = function (){//敌方坦克1运行函数
 			dflag10 = Math.floor(1+Math.random()*(5-1));
 		}
 	}else{//向下
-		document.getElementById("dtk010").style.background="url(images/hdtk04.png)";
+		document.getElementById("dtk010").style.background="url(../../images/hdtk04.png)";
 		//先旋转，使方向指向目标方向(长宽交换)
 		if(document.getElementById("dtk010").style.width!="40px"){
 			document.getElementById("dtk010").style.width="40px";
@@ -1066,7 +1066,7 @@ function createtk(){
 	ctk01.style.position="absolute";
 	ctk01.style.display="block";
 	ctk01.setAttribute("id", "ctk0"+pn);
-	ctk01.style.background="url(images/dtk01.png)";
+	ctk01.style.background="url(../../images/dtk01.png)";
 	var tk00 = document.getElementById("tk00");
 	var frame = document.getElementById("frame");
 	frame.insertBefore(ctk01, tk00);//将新节点插入指定节点前面
@@ -1099,7 +1099,7 @@ var dtknewrun = function(){
 //			alert(fxArray[i]);
 //			alert(fxcell);
 			if(fxcell=="1"){//向左
-				document.getElementById("ctk0"+(i+1)).style.background="url(images/dtk01.png)"
+				document.getElementById("ctk0"+(i+1)).style.background="url(../../images/dtk01.png)"
 				//先旋转，使方向指向目标方向(长宽交换)
 				//先判定是否为横向
 				if(document.getElementById("ctk0"+(i+1)).style.width!="50px"){
@@ -1173,7 +1173,7 @@ var dtknewrun = function(){
 //				}
 				
 			}else if(fxcell=="2"){//向上
-				document.getElementById("ctk0"+(i+1)).style.background="url(images/dtk02.png)"
+				document.getElementById("ctk0"+(i+1)).style.background="url(../../images/dtk02.png)"
 				//先旋转，使方向指向目标方向(长宽交换)
 				if(document.getElementById("ctk0"+(i+1)).style.width!="40px"){
 					document.getElementById("ctk0"+(i+1)).style.width="40px";
@@ -1249,7 +1249,7 @@ var dtknewrun = function(){
 //				}
 				
 			}else if(fxcell=="3"){//向右
-				document.getElementById("ctk0"+(i+1)).style.background="url(images/dtk03.png)"
+				document.getElementById("ctk0"+(i+1)).style.background="url(../../images/dtk03.png)"
 				//先旋转，使方向指向目标方向(长宽交换)
 				//先判定是否为横向
 				if(document.getElementById("ctk0"+(i+1)).style.width!="50px"){
@@ -1326,7 +1326,7 @@ var dtknewrun = function(){
 //				}
 				
 			}else{//向下
-				document.getElementById("ctk0"+(i+1)).style.background="url(images/dtk04.png)"
+				document.getElementById("ctk0"+(i+1)).style.background="url(../../images/dtk04.png)"
 				//先旋转，使方向指向目标方向(长宽交换)
 				if(document.getElementById("ctk0"+(i+1)).style.width!="40px"){
 					document.getElementById("ctk0"+(i+1)).style.width="40px";
@@ -1426,19 +1426,19 @@ var dtknewrun = function(){
 					if(fxcell=="1"){//左面产生子弹
 						dzd001.style.left= bx-7+"px";
 						dzd001.style.top= by+15+"px";
-						dzd001.style.backgroundImage="url(images/zdfb1p.png)";
+						dzd001.style.backgroundImage="url(../../images/zdfb1p.png)";
 					}else if(fxcell=="2"){//上面产生子弹
 						dzd001.style.left= bx+15+"px";
 						dzd001.style.top= by-7+"px";
-						dzd001.style.backgroundImage="url(images/zdfb2p.png)";
+						dzd001.style.backgroundImage="url(../../images/zdfb2p.png)";
 					}else if(fxcell=="3"){//右面产生子弹
 						dzd001.style.left= bx+52+"px";
 						dzd001.style.top= by+15+"px";
-						dzd001.style.backgroundImage="url(images/zdfb3p.png)";
+						dzd001.style.backgroundImage="url(../../images/zdfb3p.png)";
 					}else{//下面产生子弹
 						dzd001.style.left= bx+15+"px";
 						dzd001.style.top= by+52+"px";
-						dzd001.style.backgroundImage="url(images/zdfb4p.png)";
+						dzd001.style.backgroundImage="url(../../images/zdfb4p.png)";
 					}
 					dzd001.style.display="block";
 					document.getElementById("frame").appendChild(dzd001);
@@ -1619,7 +1619,7 @@ function over(){
 	divover.style.index="9999";
 	divover.style.position="absolute";
 	divover.style.index="9000";
-	divover.style.background="url(images/tkdbj2.png)";
+	divover.style.background="url(../../images/tkdbj2.png)";
 	frame.appendChild(divover);
 }
 

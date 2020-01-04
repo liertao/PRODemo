@@ -1,0 +1,304 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+td{
+	border-bottom:1px solid #fff;
+}
+.firstBox h5 {
+    font-size: 30px;
+    color: #000;
+    font-weight: 700;
+}
+.firstBox table {
+    border: 1px solid #E6E6E6;
+    margin: 15px 0px;
+}
+.firstBox table thead {
+    background: #E6E6E6;
+}
+.firstBox table tr td {
+    width: 150px;
+    text-align: center;
+}
+.firstBox button {
+    width: 100px;
+    height: 40px;
+    background: #E6E6E6;
+    border: 1px solid #C7D3E6;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+}
+#twoBox {
+    margin: 20px 0px 0px;
+    background: #E6E6E6;
+    height: 320px;
+    width: 460px;
+    /*position: relative;*/
+    position:absolute;
+    display: none;
+    float:left;
+    top:10px;
+    left:10px;
+    /*阴影效果
+    box-shadow:2px 2px 10px #464646;*/
+}
+#twoBox .twoBox_lever {
+    width: 450px;
+    height: 310px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    /*阴影效果
+    box-shadow:1px 1px 2px #464646;*/
+}
+.twoBox_lever_two {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
+}
+.twoBox_lever_two .two_title {
+    width: 100%;
+    height: 40px;
+    background: #E6E6E6;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.twoBox_lever_two .two_title p {
+    font-size: 16px;
+    color: #000;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+.twoBox_lever_two form {
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+    height: calc(100% - 100px);
+}
+.twoBox_lever_two form input {
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.twoBox_lever_two .two_footer {
+    height: 40px;
+    text-align: right;
+    padding-right: 10px;
+}
+.twoBox_lever_two .two_footer button {
+    height: 30px;
+    background: #E6E6E6;
+    border: 1px solid #C7D3E6;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+}
+.twoBox_lever_two .two_footer button:first-of-type {
+    width: 50px;
+    /*padding: 0px 10px;*/
+}
+.twoBox_lever_two .two_footer button:last-of-type {
+    width: 50px;
+}
+.show {
+    display: block !important;
+}
+.checked {
+	background: #ccc;
+}
+/*修改部分*/
+#thrBox {
+    margin: 20px 0px 0px;
+    background: #E6E6E6;
+    height: 355px;
+    width: 460px;
+    /*position: relative;*/
+    position:absolute;
+    display: none;
+    float:left;
+    top:10px;
+    left:10px;
+    /*阴影效果
+    box-shadow:2px 2px 10px #464646;*/
+}
+#thrBox .thrBox_lever {
+    width: 450px;
+    height: 345px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    /*阴影效果
+    box-shadow:2px 2px 10px #464646;*/
+}
+.thrBox_lever_two {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
+}
+.thrBox_lever_two .thr_title {
+    width: 100%;
+    height: 40px;
+    background: #E6E6E6;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.thrBox_lever_two .thr_title p {
+    font-size: 16px;
+    color: #000;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+.thrBox_lever_two form {
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+    height: calc(100% - 100px);
+}
+.thrBox_lever_two form input {
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.thrBox_lever_two .thr_footer {
+    height: 40px;
+    text-align: right;
+    padding-right: 10px;
+}
+.thrBox_lever_two .thr_footer button {
+    height: 30px;
+    background: #E6E6E6;
+    border: 1px solid #C7D3E6;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+}
+.thrBox_lever_two .thr_footer button:first-of-type {
+    width: 50px;
+    /*padding: 0px 10px;*/
+}
+.thrBox_lever_two .thr_footer button:last-of-type {
+    width: 50px;
+}
+/*查询部分*/
+#forBox {
+    margin: 20px 0px 0px;
+    background: #E6E6E6;
+    height: 260px;
+    width: 480px;
+    /*position: relative;*/
+    position:absolute;
+    display: none;
+    float:left;
+    top:10px;
+    left:10px;
+    /*阴影效果
+    box-shadow:2px 2px 10px #464646;*/
+}
+#forBox .forBox_lever {
+    width: 470px;
+    height: 250px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    /*阴影效果
+    box-shadow:2px 2px 10px #464646;*/
+}
+.forBox_lever_two {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
+}
+.forBox_lever_two .for_title {
+    width: 100%;
+    height: 40px;
+    background: #E6E6E6;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.forBox_lever_two .for_title p {
+    font-size: 16px;
+    color: #000;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+.forBox_lever_two form {
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+    height: calc(100% - 100px);
+}
+.forBox_lever_two form input {
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.forBox_lever_two .for_footer {
+    height: 40px;
+    text-align: right;
+    padding-right: 10px;
+}
+.forBox_lever_two .for_footer button {
+    height: 30px;
+    background: #E6E6E6;
+    border: 1px solid #C7D3E6;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+}
+.forBox_lever_two .for_footer button:first-of-type {
+    width: 50px;
+    /*padding: 0px 10px;*/
+}
+.forBox_lever_two .for_footer button:last-of-type {
+    width: 50px;
+}
+.bsha {
+	2px 2px 10px #464646;
+}
+#thd {
+	display:block;
+    width: 100%;
+}
+#tby {
+	display:block;
+    height:500px;
+    width: 940px;
+    overflow-y:scroll;
+}

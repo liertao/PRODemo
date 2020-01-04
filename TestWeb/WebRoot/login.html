@@ -3,85 +3,79 @@
 <title>项目管理系统</title>
 <style type="text/css">
 	.loginform {
-		/*border: 1px solid red;*/
-		width:40%;
-		margin-left:40%;
-		margin-top:15%;
+		/*border: 1px solid red;
+		width:40%;*/
+		height:50%;
+		margin-left:30%;
+		margin-right:30%;
+		margin-top:8%;
+		margin-bottom:10%;
+		background-image: url(images/itemimages/login.jpg);
+		background-size:100%;
 	}
 	.user {
 		margin-top:10px;
 	}
+	#label {
+		padding-top: 30%;
+    	padding-left: 30%;
+	}
+	#submit {
+	    width: 52%;
+	    height: 10%;
+	    margin-top: 6%;
+	    background-color: #46b0b9;
+	}
 </style>
 </head>
-<body style="background-image: url(itemimages/login.jpg); background-size:100%;">
+<body style="background-image: url(images/itemimages/login1.jpg); background-size:100%;">
+<div >
+	<div style="margin-left:30%;margin-right:30%;"></div>
 	<div class="loginform">
-		用户：<input class="user" type="text" id="logId" name="logId">
-		<br>
-		密码：<input class="user" type="password" id="pwd" name="pwd"><div class="user"></div>
-		<input type="button" value="登录" onclick="login();">
+		<div id="label">
+			<label>用户：<input class="user" type="text" id="logId" name="logId"></label>
+			<br>
+			<label>密码：<input class="user" type="password" id="pwd" name="pwd"><div class="user"></div></label>
+			<input id="submit" type="button" value="登录" onclick="login();">
+		</div>
 	</div>
+</div>
+	
 	
 </body>
+<script type="text/javascript" src="js/items/toolFN.js"></script>
 <script type="text/javascript">
+	window.onload = function () {
+		document.getElementById('logId').focus();
+		document.onkeydown = function(e){
+			if(e.keyCode == 13){
+				login();
+			}
+		}
+	}
 	//登录方法
 	function login(){
 		//获取登录用户名和密码
 		var logId = document.getElementById("logId"),
 			pwd = document.getElementById("pwd");
+		if(logId==""){
+			alert('用户名不能为空');
+			return false;
+		}
+		if(pwd==""){
+			alert('密码不能为空');
+			return false;
+		}
 		var data = {logId:logId.value,pwd:pwd.value};
 		MAjax('POST', 'login', data, function(data){
 			var obj = eval("("+ data +")");
 			debugger;
 			if(obj.success){
 				//跳转到数据展示层
-				window.location.href='devitems1.html';
+				window.location.href='html/items/index.html';
 			}else{alert(obj.msg);}
 		}, function(error){alert(error)});
 		
-	}
-	//请求行数
-	function MAjax(type, url, data, success, failed){
-		var xhr = null;
-		if(window.XMLHttpRequest){
-			xhr = new XMLHttpRequest();
-		}else{
-			xhr = new ActiveObject('Microsoft.XMLHTTP');
-		}
-		
-		var random = Math.random();
-		if(typeof data == 'object'){
-			var str = '';
-			for(var key in data){
-				str += key + '=' +data[key] + '&';
-			}
-			data = str.replace(/&$/, '');
-		}
-		
-		if(type.toUpperCase()=='GET'){
-			if(data){
-				xhr.open('GET', url + '?' +data, true);
-			}else{
-				xhr.open('GET', url + '?t='+random, true);
-			}
-			xhr.send();
-		}else if(type.toUpperCase()=='POST'){
-			xhr.open('POST', url, true);
-			//如果要向html表单那样post请求，需要添加消息头
-			xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-			xhr.send(data);
-		}
-		
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == 4){
-				if(xhr.status == 200){
-					success(xhr.responseText);
-				}else{
-					if(failed){
-						failed(xhr.status)
-					}
-				}
-			}
-		}
 	}
 </script>
 </html>
